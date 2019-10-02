@@ -2,16 +2,20 @@ import { useReducer } from 'react';
 import uuid from 'uuid-random';
 
 export const Action = {
-    PLAY: 'play'
+    PLAY: 'play',
+    COMPARE: 'compare'
 };
 
 export const CardState = {
     ACTIVE: 'active',
-    CLOSED: 'closed'
+    CLOSED: 'closed',
+    OWNED_BY_PLAYER: 'player',
+    OWNED_BY_COMPUTER: 'computer'
 };
 
 export const GameState = {
-    IDLE: 'idle'
+    IDLE: 'idle',
+    PLAYING: 'playing'
 };
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -25,32 +29,36 @@ const cards = suits
     .map(card => ({ ...card, id: uuid(), state: CardState.CLOSED }))
     .sort(shuffle);
 
-const setActiveCard = (cards, targetIndex) => {
-    return cards.map((card, i) => (
-        i === targetIndex
-            ? { ...card, state: CardState.ACTIVE }
-            : card
-    ));
+const setActiveCard = player => {
+    return {
+        ...player,
+        deck: player.deck.map((card, i) => (
+            i === player.currentCard
+                ? { ...card, state: CardState.ACTIVE }
+                : card
+        ))
+    };
 };
 
-export const reducer = (state, action) => {
-    switch (action.type) {
-        case Action.PLAY: {
-            return {
-                ...state,
-                player: {
-                    ...state.player,
-                    deck: setActiveCard(state.player.deck, state.player.currentCard)
-                },
-                computer: {
-                    ...state.computer,
-                    deck: setActiveCard(state.computer.deck, state.computer.currentCard)
-                }
-            };
-        }
-        default: {
-            return state;
-        }
+const setActiveCardWinner = (player, winner) => {
+    return {
+        ...player,
+        currentCard: player.currentCard - 1,
+        deck: player.deck.map((card, i) => (
+            i === player.currentCard
+                ? { ...card, winner }
+                : card
+        ))
+    };
+};
+
+const compareCards = (playerCard, computerCard) => {
+    if (playerCard.value === computerCard.value) {
+        return 'krig';
+    } else if ((playerCard.value > computerCard.value || playerCard.value === 1) && computerCard.value !== 1) {
+        return 'player';
+    } else {
+        return 'computer';
     }
 };
 
@@ -66,6 +74,34 @@ const initialState = {
         wonCards: []
     },
     gameState: GameState.IDLE
+};
+
+export const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case Action.PLAY: {
+            return {
+                ...state,
+                player: setActiveCard(state.player),
+                computer: setActiveCard(state.computer),
+                gameState: GameState.PLAYING
+            };
+        }
+        case Action.COMPARE: {
+            const playerCard = state.player.deck[state.player.currentCard];
+            const computerCard = state.computer.deck[state.computer.currentCard];
+            const winner = compareCards(playerCard, computerCard);
+
+            return {
+                ...state,
+                player: setActiveCardWinner(state.player, winner),
+                computer: setActiveCardWinner(state.computer, winner),
+                gameState: GameState.IDLE
+            }
+        }
+        default: {
+            return state;
+        }
+    }
 };
 
 export const useGameReducer = () => {

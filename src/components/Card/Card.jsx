@@ -8,8 +8,7 @@ import { Action, CardState } from '../../context/reducer';
 import './Card.less';
 
 const getPositionForState = (cardState, cardIndex, player) => {
-    const yFactor = player === 'player' ? -1 : 1;
-
+    const direction = player === 'player' ? -1 : 1;
     switch (cardState) {
         case CardState.CLOSED: {
             return {
@@ -20,7 +19,7 @@ const getPositionForState = (cardState, cardIndex, player) => {
         case CardState.ACTIVE: {
             return {
                 x: 0,
-                y: (Sizes.CARD_HEIGHT + Sizes.CARD_GAP) * yFactor + (cardIndex * 2)
+                y: (Sizes.CARD_HEIGHT + Sizes.CARD_GAP) * direction + (cardIndex * 2)
             }
         }
         default: {
@@ -34,9 +33,9 @@ const Card = ({
     value,
     suit,
     state,
-    player
+    player,
+    winner
 }) => {
-
     const { intersectsPlayArea, dispatch } = useContext(GameContext);
     const [isOpen, setIsOpen] = useState(false);
     const [zIndex, setZIndex] = useState(index);
@@ -55,6 +54,17 @@ const Card = ({
             setZIndex(-index)
         }
     }, [state]);
+
+    useEffect(() => {
+        if (winner) {
+            const direction = winner === 'player' ? -1 : 1;
+            const swapFactor = winner === player ? 1 : 2;
+            setPosition({
+                ...position,
+                x: (Sizes.CARD_WIDTH + Sizes.CARD_GAP) * swapFactor * direction
+            });
+        }
+    }, [winner]);
 
     return (
         <motion.div

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef } from 'react';
 import { intersects } from './util';
-import { useGameReducer } from './reducer';
+import { Action, GameState, useGameReducer } from './reducer';
 
 export const GameContext = createContext({});
 
@@ -13,7 +13,11 @@ export const GameContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        console.log(state.gameState);
+        if (state.gameState === GameState.PLAYING) {
+            setTimeout(() => {
+                dispatch({ type: Action.COMPARE });
+            }, 1000);
+        }
     }, [state.gameState]);
 
     return (
