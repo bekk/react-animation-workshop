@@ -1,0 +1,56 @@
+@import '../../variables';
+
+@color: rgba(0, 0, 0, 0.5);
+
+.positionDeck() {
+  position: absolute;
+  width: @cardWidth;
+  height: @cardHeight;
+  border: 0.25rem dashed @color;
+  border-radius: 1.25rem;
+  z-index: -1;
+}
+
+.PlayArea {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px;
+
+  .PlayArea__waste {
+    .positionDeck();
+
+    &.left {
+      align-self: flex-end;
+      transform: translateX(0.25rem);
+    }
+
+    &.right {
+      align-self: flex-start;
+      transform: translateX(-0.25rem);
+      z-index: 999;
+    }
+  }
+
+  .PlayArea__score {
+    .positionDeck();
+
+    &:before {
+      content: 'Score';
+      color: @color;
+      font-size: 1.2rem;
+      position: absolute;
+      top: -2rem;
+    }
+
+    &.left {
+      left: calc(-@cardWidth - 50px);
+    }
+
+    &.right {
+      right: calc(-@cardWidth - 50px);
+    }
+  }
+}

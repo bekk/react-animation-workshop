@@ -1,0 +1,19 @@
+@import '../../variables';
+
+.Deck {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+
+  &.waste {
+    bottom: 0;
+  }
+
+  &.left {
+    bottom: calc(50% - @cardHeight * 2);
+  }
+
+  &.right {
+    bottom: calc(50% + @cardHeight);
+  }
+}
