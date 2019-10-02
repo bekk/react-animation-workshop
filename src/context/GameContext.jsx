@@ -1,86 +1,40 @@
-import React, { createContext, useState, useRef, useCallback, useEffect } from 'react';
-import uuid from 'uuid-random';
+import React, { createContext, useReducer, useRef } from 'react';
+import { getCards, intersects } from './util';
+import { reducer } from './reducer';
 
-const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-const suits = ['diamonds', 'clubs', 'hearts', 'spades'];
+const cards = getCards();
 
-const shuffle = deck => [...deck].sort(() => 0.5 - Math.random());
-
-const cards = suits
-    .map(suit => values.map(value => ({ suit, value })))
-    .reduce((allCards, allCardsInSuit) => allCards.concat(allCardsInSuit), [])
-    .map(card => ({
-        ...card,
-        id: uuid(),
-        initial: { x: 0, y: 0 }
-    }));
-
-const initialDeck = shuffle(cards);
-
-export const GameContext = createContext({});
-
-const usePlayer = (cards) => {
-    const [deck, setDeck] = useState(cards);
-    const [waste, setWaste] = useState([]);
-    const wasteRef = useRef();
-    const currentCard = useRef();
-
-    const playCard = useCallback(initialPosition => {
-        const card = {
-            ...[...deck].pop(),
-            initial: initialPosition
-        };
-
-        if (card) {
-            currentCard.current = card;
-            setDeck(deck.slice(0, deck.length - 1));
-            setWaste([...waste, card]);
-        }
-
-        return card;
-    }, [deck, waste]);
-
-    return {
-        deck,
-        waste,
-        wasteRef,
-        currentCard,
-        playCard,
-    };
-};
-
-const compareCards = (humanCard, computerCard) => {
-    if (humanCard.value - computerCard.value === 0) {
-        return 'krig';
-    } else if (humanCard.value === 1 || (humanCard.value > computerCard.value && computerCard.value !== 1)) {
-        return 'human';
-    } else {
-        return 'computer';
+const initialState = {
+    player: {
+        deck: cards.slice(0, cards.length / 2).map(card => ({ ...card, player: 'player' })),
+        currentCard: cards.length / 2 - 1,
+        wonCards: []
+    },
+    computer: {
+        deck: cards.slice(cards.length / 2).map(card => ({ ...card, player: 'computer' })),
+        currentCard: cards.length / 2 - 1,
+        wonCards: []
     }
 };
 
-const GameContextProvider = ({ children }) => {
-    const humanPlayer = usePlayer(initialDeck.slice(0, initialDeck.length / 2));
-    const computerPlayer = usePlayer(initialDeck.slice(initialDeck.length / 2));
-    const [scores, setScores] = useState({ human: 0, computer: 0 });
+export const GameContext = createContext({});
 
-    const playCard = activeCardPosition => {
-        const humanCard = humanPlayer.playCard(activeCardPosition);
-        const computerCard = computerPlayer.playCard({ x: 0, y: -226 });
+export const GameContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const playAreaRef = useRef();
 
-        const winner = compareCards(humanCard, computerCard);
+    const intersectsPlayArea = (event) => {
+        return intersects(event, playAreaRef.current);
     };
 
     return (
         <GameContext.Provider value={{
-            humanPlayer,
-            computerPlayer,
-            playCard,
-            scores
+            state,
+            dispatch,
+            playAreaRef,
+            intersectsPlayArea
         }}>
             {children}
         </GameContext.Provider>
     );
 };
-
-export default GameContextProvider;

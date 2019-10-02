@@ -4,6 +4,10 @@
   position: relative;
   height: 0.125rem;
   width: @cardWidth;
+
+  &.active {
+
+  }
 }
 
 .Card {
@@ -18,14 +22,12 @@
   border-radius: 1rem;
   box-shadow: inset 0 0 0 0.5rem #f8f5f5,  0 0.125rem 0.125rem rgba(0, 0, 0, 0.25);
 
-  &.closed {
-    background: #091f50;
+  &.open {
+    z-index: 50;
   }
 
-  &.hearts, &.diamonds, &.spades, &.clubs {
-    &.open:hover {
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
+  &.closed {
+    background: #091f50;
   }
 
   &.hearts p,
@@ -53,7 +55,7 @@
   }
 
   .Card__bottom {
-    text-align: right;
+    transform: rotate(180deg);
   }
 
   .Card__center {

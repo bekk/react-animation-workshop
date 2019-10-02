@@ -1,40 +1,86 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CardFace from './CardFace';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
+import { Sizes } from '../../constants';
 import { GameContext } from '../../context/GameContext';
-import { intersects } from '../../util/intersects';
+import { Action, CardState } from '../../context/reducer';
 import './Card.less';
 
+const getPositionForState = (cardState, cardIndex, player) => {
+    const yFactor = player === 'player' ? -1 : 1;
+
+    switch (cardState) {
+        case CardState.CLOSED: {
+            return {
+                x: 0,
+                y: 0
+            };
+        }
+        case CardState.ACTIVE: {
+            return {
+                x: 0,
+                y: (Sizes.CARD_HEIGHT + Sizes.CARD_GAP) * yFactor + (cardIndex * 2)
+            }
+        }
+        default: {
+            return { x: 0, y: 0 };
+        }
+    }
+};
+
 const Card = ({
+    index,
     value,
     suit,
-    id,
-    initial = { x: 0, y: 0 },
-    position = { x: 0, y: 0 },
-    isOpen = false,
-    isOnTop = false
+    state,
+    player
 }) => {
-    const { humanPlayer, playCard } = useContext(GameContext);
-    const isDraggable = !isOpen && isOnTop;
+
+    const { intersectsPlayArea, dispatch } = useContext(GameContext);
+    const [isOpen, setIsOpen] = useState(false);
+    const [zIndex, setZIndex] = useState(index);
+
+    // Animasjons-state
+    const [rotation, setRotation] = useState((Math.random() - 0.5) * 2);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        setIsOpen(position.y !== 0);
+    }, [position]);
+
+    useEffect(() => {
+        if (state === CardState.ACTIVE) {
+            setPosition(getPositionForState(state, index, player));
+            setZIndex(-index)
+        }
+    }, [state]);
 
     return (
         <motion.div
-            className={`Card__wrapper ${isOpen ? 'open' : 'closed'}`}
-            key={id}
-            drag={isDraggable}
+            className={classNames('Card__wrapper', state, player)}
+            animate={{
+                rotate: rotation,
+                ...position
+            }}
+            style={{ zIndex }}
+            drag={state === CardState.CLOSED}
             dragElastic={1}
-            dragConstraints={isDraggable && { top: 0, right: 0, bottom: 0, left: 0 }}
-            onDragEnd={(event, info) => {
-                if (intersects(event, humanPlayer.wasteRef.current)) {
-                    playCard({x: info.offset.x, y: info.offset.y + 226 });
+            dragConstraints={{
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            }}
+            onDragEnd={(event) => {
+                if (intersectsPlayArea(event)) {
+                    dispatch({ type: Action.PLAY });
                 }
             }}
-            initial={initial}
-            animate={position}
         >
-            <div className={`Card ${isOpen ? 'open' : 'closed'} ${suit}`}>
+            <motion.div className={classNames('Card', isOpen ? 'open' : 'closed', suit)}>
                 {isOpen && <CardFace value={value} />}
-            </div>
+            </motion.div>
         </motion.div>
     )
 };
