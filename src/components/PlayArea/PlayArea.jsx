@@ -1,14 +1,17 @@
 import React from 'react';
 import Deck from '../Deck';
+import Waste from '../Waste';
 import './PlayArea.less';
 
-const PlayArea = ({ player, position }) => {
+const PlayArea = ({ player, direction }) => {
     return (
         <div className="PlayArea">
-            <Deck cards={player.deck} position={position} />
-            <div className={`PlayArea__waste ${position}`} ref={player.wasteRef}>
-                <Deck cards={player.waste} isOpen />
-            </div>
+            <Deck cards={player.deck} direction={direction} />
+            <Waste
+                cards={player.waste}
+                direction={direction}
+                forwardRef={player.wasteRef}
+            />
         </div>
     )
 };

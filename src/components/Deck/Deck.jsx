@@ -2,15 +2,13 @@ import React from 'react';
 import Card from '../Card';
 import './Deck.less';
 
-const Deck = ({ cards, direction, position, isOpen }) => {
+const Deck = ({ cards }) => {
     return (
-        <div className={`Deck ${position ? position : 'waste'}`}>
+        <div className="Deck">
             {cards.map((card, i) => (
                 <Card
                     key={card.id + '-deck'}
-                    direction={direction}
-                    isOnTop={i === cards.length - 1}
-                    isOpen={isOpen}
+                    index={i}
                     {...card}
                 />
             ))}
