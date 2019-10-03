@@ -60,9 +60,10 @@ const Card = ({
             const direction = winner === 'player' ? -1 : 1;
             const swapFactor = winner === player ? 1 : 2;
             setPosition({
-                ...position,
-                x: (Sizes.CARD_WIDTH + Sizes.CARD_GAP) * swapFactor * direction
+                y: position.y + (0.5 - Math.random()) * 25,
+                x: (Sizes.CARD_WIDTH + Sizes.CARD_GAP) * swapFactor * direction,
             });
+            setRotation((Math.random() - 0.5) * 25);
         }
     }, [winner]);
 
@@ -73,7 +74,10 @@ const Card = ({
                 rotate: rotation,
                 ...position
             }}
-            style={{ zIndex }}
+            style={{
+                zIndex,
+                originY: `-${Sizes.CARD_HEIGHT / 2}px`
+            }}
             drag={state === CardState.CLOSED}
             dragElastic={1}
             dragConstraints={{

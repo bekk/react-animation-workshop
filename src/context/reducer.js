@@ -10,7 +10,9 @@ export const CardState = {
     ACTIVE: 'active',
     CLOSED: 'closed',
     OWNED_BY_PLAYER: 'player',
-    OWNED_BY_COMPUTER: 'computer'
+    OWNED_BY_COMPUTER: 'computer',
+    KRIG_CLOSED: 'krig_closed',
+    KRIG_OPEN: 'krig_open'
 };
 
 export const GameState = {
@@ -29,27 +31,19 @@ const cards = suits
     .map(card => ({ ...card, id: uuid(), state: CardState.CLOSED }))
     .sort(shuffle);
 
+const setValueForCurrentCardCard = (player, key, value) => ({
+    ...player,
+    deck: player.deck.map((card, i) => (
+        i === player.currentCard ? { ...card, [key]: value } : card
+    ))
+});
+
 const setActiveCard = player => {
-    return {
-        ...player,
-        deck: player.deck.map((card, i) => (
-            i === player.currentCard
-                ? { ...card, state: CardState.ACTIVE }
-                : card
-        ))
-    };
+    return setValueForCurrentCardCard(player, 'state', CardState.ACTIVE);
 };
 
 const setActiveCardWinner = (player, winner) => {
-    return {
-        ...player,
-        currentCard: player.currentCard - 1,
-        deck: player.deck.map((card, i) => (
-            i === player.currentCard
-                ? { ...card, winner }
-                : card
-        ))
-    };
+    return setValueForCurrentCardCard(player, 'winner', winner);
 };
 
 const compareCards = (playerCard, computerCard) => {
@@ -93,8 +87,14 @@ export const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                player: setActiveCardWinner(state.player, winner),
-                computer: setActiveCardWinner(state.computer, winner),
+                player: {
+                    ...setActiveCardWinner(state.player, winner),
+                    currentCard: state.player.currentCard - 1,
+                },
+                computer: {
+                    ...setActiveCardWinner(state.computer, winner),
+                    currentCard: state.computer.currentCard - 1,
+                },
                 gameState: GameState.IDLE
             }
         }

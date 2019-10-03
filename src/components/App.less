@@ -25,6 +25,19 @@
 
       &.playarea_player {
         box-shadow: inset 0 0 0 0.25rem @color;
+
+        &:before {
+          position: absolute;
+          content: 'Dra kort hit';
+          color: @color;
+          width: 0;
+          left: 30%;
+          top: 22%;
+          font-family: 'Raleway', sans-serif;
+          font-weight: 900;
+          font-size: 2rem;
+          transform: rotate(-15deg);
+        }
       }
 
       &.playarea_computer {
