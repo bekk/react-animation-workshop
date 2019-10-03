@@ -34,9 +34,125 @@ Du kan enten velge å kode i CodeSandbox eller klone repoet og kode lokalt:
 Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill. 
 
 ## Oppgave 1
-🏆I denne oppgaven skal klare å dra et krot fra en bunke til området der det står *dra kortet hit*.
+I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-💡Bruk `drag`-propen
+🏆Gjør det mulig å klikke på et kort og dra det rundt
+🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 2
+Oppgavetekst
+
+🏆a)
+🏆b)
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 3
+Oppgavetekst
+
+🏆a)
+🏆b)
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 4
+I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
+
+🏆Gjør det mulig å klikke på et kort og dra det rundt
+🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 5
+Oppgavetekst
+
+🏆a)
+🏆b)
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 6
+Oppgavetekst
+
+🏆Gjør det mulig å klikke på et kort og dra det rundt
+🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
 
 <details>
   <summary>🚨Løsningsforslag</summary>
