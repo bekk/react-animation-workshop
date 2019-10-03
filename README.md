@@ -36,7 +36,8 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 ## Oppgave 1
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-🏆Gjør det mulig å klikke på et kort og dra det rundt
+🏆Gjør det mulig å klikke på et kort og dra det rundt 
+
 🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
 
 <details>
@@ -60,6 +61,7 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 Oppgavetekst
 
 🏆a)
+
 🏆b)
 
 <details>
@@ -83,6 +85,7 @@ Oppgavetekst
 Oppgavetekst
 
 🏆a)
+
 🏆b)
 
 <details>
@@ -105,8 +108,9 @@ Oppgavetekst
 ## Oppgave 4
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-🏆Gjør det mulig å klikke på et kort og dra det rundt
-🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
+🏆a)
+
+🏆b)
 
 <details>
   <summary>🚨Løsningsforslag</summary>
@@ -129,6 +133,7 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 Oppgavetekst
 
 🏆a)
+
 🏆b)
 
 <details>
@@ -151,8 +156,9 @@ Oppgavetekst
 ## Oppgave 6
 Oppgavetekst
 
-🏆Gjør det mulig å klikke på et kort og dra det rundt
-🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
+🏆a)
+
+🏆b)
 
 <details>
   <summary>🚨Løsningsforslag</summary>
