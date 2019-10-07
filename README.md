@@ -31,14 +31,142 @@ Du kan enten velge å kode i CodeSandbox eller klone repoet og kode lokalt:
 2. Naviger til repo-mappen og kjør `npm install` etterfulgt av `npm run start` og appen vil kjøre på `localhost:1234` i nettleseren.
 
 # Oppgaver
-Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill. 
+Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill.
 
-## Oppgave 1
+💡Det er mye spillogikk implementert her og der i appen, og selv om vi har prøvd å skjule så mye vi kan vil du fortsatt måtte forholde deg til filer og komponenter som inneholder en del logikk. Vi skal derimot prøve å guide dere til de riktige stedene i appen der oppgavene skal løses.
+
+## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-🏆Gjør det mulig å klikke på et kort og dra det rundt 
+🏆a) Gjør det mulig å klikke på et kort og dra det rundt
 
-🏆Legg på constrains slik at kortet kun kan slippes innen for området markert med "Dra kort hit"
+💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor.
+
+<details>
+  <summary>🚨Løsningsforslag 1a)</summary>
+
+```js
+  <motion.div 
+    className={classNames('Card__wrapper', state, player)}
+    drag
+  >
+    
+```
+
+</details>
+
+🏆b) Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
+💡`<motion.div>` har følgende relevante props: `dragConstraints`, `dragElastic` og `onDragEnd`. Sett sistnevnte til: 
+
+```js
+onDragEnd={(event) => {
+    if (intersectsPlayArea(event)) {
+        dispatch({ type: Action.PLAY });
+    }
+}}
+```
+
+Denne sjekker om kortet befinner seg innenfor det skraverte området når det slippes, og vil endre staten til spillet samt flippe kortet når dette skjer.
+
+<details>
+  <summary>🚨Løsningsforslag 1b)</summary>
+  Trikset for å få det her til å fungere i spillet er å sette constraints'ene til 0 i alle retninger. Framer sin `drag` har en elastisitet man kan styre med `dragElastic`-prop'en, som gjør at man kan få dratt kortet til riktig plassering selv om det ikke får lov til å "lande" noe annet sted enn der det startet.
+
+```js
+  <motion.div 
+    className={classNames('Card__wrapper', state, player)}
+    drag
+    dragElastic={1}
+    dragConstraints={{
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    }}
+    onDragEnd={(event) => {
+        if (intersectsPlayArea(event)) {
+            dispatch({ type: Action.PLAY });
+        }
+    }}
+  >
+    
+```
+
+</details>
+
+🏆c) Drag skal kun være mulig hvis kortet er vendt ned. Fiks dette
+💡Man kan ha betinget drag slik: `drag={true}
+💡`Card`-komponenten har en `state: CardState`
+
+<details>
+  <summary>🚨Løsningsforslag 1c)</summary>
+
+```js
+  <motion.div 
+    className={classNames('Card__wrapper', state, player)}
+    drag={state === CardState.CLOSED}
+    dragConstraints={{
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    }}
+    onDragEnd={(event) => {
+        if (intersectsPlayArea(event)) {
+            dispatch({ type: Action.PLAY });
+        }
+    }}
+  >
+    
+```
+
+</details>
+
+## Oppgave 2: Animate
+`animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
+
+🏆a) Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
+💡`Card`-komponenten har en `position`-prop som endres ved visse hendelser i spillet.
+
+❗Si noe om style-propen (i løsningsforslaget?)❗
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Her er all logikk implementert allerede, så dette innebærer bare å legge på en `animate`-prop på `<motion.div>`-en og spread'e `position`-objektet, som oppdateres med riktig posisjoner avhengig av hva som skjer i spillet.
+  
+  Her har vi også forøvrig lagt på en `rotate`-verdi i `animate`-prop'en for å få kortene til å se litt mer troverdige ut når de ligger i de forskjellige bunkene. Ganske effektfullt (og ikke minst enkelt, bare med en enkelt prop)!
+  
+```js
+  <motion.div 
+    className={classNames('Card__wrapper', state, player)}
+    drag={state === CardState.CLOSED}
+    dragElastic={1}
+    animate={{
+        rotate: rotation,
+        ...position
+    }}
+    dragConstraints={{
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    }}
+    onDragEnd={(event) => {
+        if (intersectsPlayArea(event)) {
+            dispatch({ type: Action.PLAY });
+        }
+    }}
+>
+    <motion.div className={classNames('Card', isOpen ? 'open' : 'closed', suit)}>
+        {isOpen && <CardFace value={value} />}
+    </motion.div>
+</motion.div>
+```
+
+</details>
+
+🏆b)
 
 <details>
   <summary>🚨Løsningsforslag</summary>
@@ -57,12 +185,28 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 
 </details>
 
-## Oppgave 2
+## Oppgave n
 Oppgavetekst
 
 🏆a)
+💡Tips
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  
 
 🏆b)
+💡Tips
 
 <details>
   <summary>🚨Løsningsforslag</summary>
@@ -81,98 +225,4 @@ Oppgavetekst
 
 </details>
 
-## Oppgave 3
-Oppgavetekst
 
-🏆a)
-
-🏆b)
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-## Oppgave 4
-I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
-
-🏆a)
-
-🏆b)
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-## Oppgave 5
-Oppgavetekst
-
-🏆a)
-
-🏆b)
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-## Oppgave 6
-Oppgavetekst
-
-🏆a)
-
-🏆b)
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
