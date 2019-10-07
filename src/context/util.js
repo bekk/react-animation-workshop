@@ -21,3 +21,15 @@ export const intersects = (event, element, offset = 5) => {
         && event.clientX <= elementPosition.x + element.offsetWidth + offset
         && event.clientY <= elementPosition.y + element.offsetHeight + offset;
 };
+
+export const later = (delay) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, delay);
+    });
+};
+
+export const chain = (delay, ...callbacks) => {
+    callbacks.forEach((callback, i) => {
+        setTimeout(callback, delay * i);
+    })
+};

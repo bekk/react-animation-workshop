@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef } from 'react';
-import { intersects } from './util';
-import { Action, GameState, useGameReducer } from './reducer';
+import { chain, intersects, later } from './util';
+import { Action, CardState, GameState, useGameReducer } from './reducer';
 
 export const GameContext = createContext({});
 
@@ -13,10 +13,24 @@ export const GameContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        switch (state.gameState) {
+            case GameState.PLAYING: {
+                later(1000).then(() => dispatch({ type: Action.COMPARE }));
+                break;
+            }
+            case GameState.KRIG: {
+                chain(
+                    1000,
+                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
+                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
+                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
+                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_OPEN }),
+                );
+                break;
+            }
+        }
         if (state.gameState === GameState.PLAYING) {
-            setTimeout(() => {
-                dispatch({ type: Action.COMPARE });
-            }, 1000);
+
         }
     }, [state.gameState]);
 

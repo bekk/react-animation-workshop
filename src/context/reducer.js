@@ -3,7 +3,8 @@ import uuid from 'uuid-random';
 
 export const Action = {
     PLAY: 'play',
-    COMPARE: 'compare'
+    COMPARE: 'compare',
+    PLAY_KRIG: 'play_krig'
 };
 
 export const CardState = {
@@ -17,7 +18,8 @@ export const CardState = {
 
 export const GameState = {
     IDLE: 'idle',
-    PLAYING: 'playing'
+    PLAYING: 'playing',
+    KRIG: 'krig'
 };
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -31,19 +33,23 @@ const cards = suits
     .map(card => ({ ...card, id: uuid(), state: CardState.CLOSED }))
     .sort(shuffle);
 
-const setValueForCurrentCardCard = (player, key, value) => ({
+const setValueForCurrentCard = (player, key, value) => ({
     ...player,
     deck: player.deck.map((card, i) => (
         i === player.currentCard ? { ...card, [key]: value } : card
     ))
 });
 
+const setCardState = (player, state) => {
+    return setValueForCurrentCard(player, 'state', state);
+};
+
 const setActiveCard = player => {
-    return setValueForCurrentCardCard(player, 'state', CardState.ACTIVE);
+    return setValueForCurrentCard(player, 'state', CardState.ACTIVE);
 };
 
 const setActiveCardWinner = (player, winner) => {
-    return setValueForCurrentCardCard(player, 'winner', winner);
+    return setValueForCurrentCard(player, 'winner', winner);
 };
 
 const compareCards = (playerCard, computerCard) => {
@@ -80,10 +86,38 @@ export const reducer = (state = initialState, action) => {
                 gameState: GameState.PLAYING
             };
         }
+        case Action.PLAY_KRIG: {
+            return {
+                ...state,
+                player: {
+                    ...setCardState(state.player, action.cardState),
+                    currentCard: state.player.currentCard - 1
+                },
+                computer: {
+                    ...setCardState(state.computer, action.cardState),
+                    currentCard: state.computer.currentCard - 1
+                }
+            }
+        }
         case Action.COMPARE: {
             const playerCard = state.player.deck[state.player.currentCard];
             const computerCard = state.computer.deck[state.computer.currentCard];
             const winner = compareCards(playerCard, computerCard);
+
+            if (winner === 'krig') {
+                return {
+                    ...state,
+                    gameState: GameState.KRIG,
+                    player: {
+                        ...state.player,
+                        currentCard: state.player.currentCard - 1
+                    },
+                    computer: {
+                        ...state.computer,
+                        currentCard: state.computer.currentCard - 1
+                    }
+                }
+            }
 
             return {
                 ...state,

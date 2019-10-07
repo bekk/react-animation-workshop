@@ -9,6 +9,7 @@ import './Card.less';
 
 const getPositionForState = (cardState, cardIndex, player) => {
     const direction = player === 'player' ? -1 : 1;
+    const activeYTransform = (Sizes.CARD_HEIGHT + Sizes.CARD_GAP) * direction + (cardIndex * 2);
     switch (cardState) {
         case CardState.CLOSED: {
             return {
@@ -16,10 +17,12 @@ const getPositionForState = (cardState, cardIndex, player) => {
                 y: 0
             };
         }
-        case CardState.ACTIVE: {
+        case CardState.ACTIVE:
+        case CardState.KRIG_CLOSED:
+        case CardState.KRIG_OPEN: {
             return {
                 x: 0,
-                y: (Sizes.CARD_HEIGHT + Sizes.CARD_GAP) * direction + (cardIndex * 2)
+                y: activeYTransform
             }
         }
         default: {
@@ -45,11 +48,17 @@ const Card = ({
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
-        setIsOpen(position.y !== 0);
-    }, [position]);
+        if (state !== CardState.KRIG_CLOSED) {
+            setIsOpen(position.y !== 0);
+        }
+    }, [position, state]);
 
     useEffect(() => {
-        if (state === CardState.ACTIVE) {
+        if (
+            state === CardState.ACTIVE ||
+            state === CardState.KRIG_OPEN ||
+            state === CardState.KRIG_CLOSED
+        ) {
             setPosition(getPositionForState(state, index, player));
             setZIndex(-index)
         }
@@ -78,19 +87,17 @@ const Card = ({
                 zIndex,
                 originY: `-${Sizes.CARD_HEIGHT / 2}px`
             }}
+            // OPPGAVE 1 //
             drag={state === CardState.CLOSED}
             dragElastic={1}
-            dragConstraints={{
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
+            dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0
             }}
             onDragEnd={(event) => {
                 if (intersectsPlayArea(event)) {
                     dispatch({ type: Action.PLAY });
                 }
             }}
+            ///////////////
         >
             <motion.div className={classNames('Card', isOpen ? 'open' : 'closed', suit)}>
                 {isOpen && <CardFace value={value} />}
