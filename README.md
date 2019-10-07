@@ -14,9 +14,16 @@ Lest introduskjonsartikkelen? Da får det være nok introduksjon, så la oss bar
 
 Du kommer til å se noen emojis i oppgavene. De betyr ca det her:
 
-- 🏆Oppgave: Her er hva du skal gjøre
-- 💡Tips: Litt ekstra info som kan være greit å være for å løse en oppgave
-- 🚨Løsningsforslag: Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven
+🏆Oppgave: Her er hva du skal gjøre
+
+💡Tips: Litt ekstra info som kan være greit å være for å løse en oppgave
+
+<details>
+  <summary>🚨Løsningsforslag: Klikk meg! 😊</summary>
+
+Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
+
+</details>
 
 # Oppsett
 Du kan enten velge å kode i CodeSandbox eller klone repoet og kode lokalt:
@@ -38,12 +45,14 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 ## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-🏆a) Gjør det mulig å klikke på et kort og dra det rundt
+### a)
+
+🏆Gjør det mulig å klikke på et kort og dra det rundt
 
 💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor.
 
 <details>
-  <summary>🚨Løsningsforslag 1a)</summary>
+  <summary>🚨Løsningsforslag</summary>
 
 ```js
   <motion.div 
@@ -55,7 +64,10 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 
 </details>
 
-🏆b) Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
+### b)
+
+🏆Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
+
 💡`<motion.div>` har følgende relevante props: `dragConstraints`, `dragElastic` og `onDragEnd`. Sett sistnevnte til: 
 
 ```js
@@ -69,7 +81,7 @@ onDragEnd={(event) => {
 Denne sjekker om kortet befinner seg innenfor det skraverte området når det slippes, og vil endre staten til spillet samt flippe kortet når dette skjer.
 
 <details>
-  <summary>🚨Løsningsforslag 1b)</summary>
+  <summary>🚨Løsningsforslag</summary>
   Trikset for å få det her til å fungere i spillet er å sette constraints'ene til 0 i alle retninger. Framer sin `drag` har en elastisitet man kan styre med `dragElastic`-prop'en, som gjør at man kan få dratt kortet til riktig plassering selv om det ikke får lov til å "lande" noe annet sted enn der det startet.
 
 ```js
@@ -94,12 +106,16 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-🏆c) Drag skal kun være mulig hvis kortet er vendt ned. Fiks dette
-💡Man kan ha betinget drag slik: `drag={true}
+### c)
+
+🏆Drag skal kun være mulig hvis kortet er vendt ned. Fiks dette
+
+💡Man kan ha betinget drag slik: `drag={true}`
+
 💡`Card`-komponenten har en `state: CardState`
 
 <details>
-  <summary>🚨Løsningsforslag 1c)</summary>
+  <summary>🚨Løsningsforslag</summary>
 
 ```js
   <motion.div 
@@ -125,7 +141,10 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ## Oppgave 2: Animate
 `animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
 
-🏆a) Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
+### a)
+
+🏆Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
+
 💡`Card`-komponenten har en `position`-prop som endres ved visse hendelser i spillet.
 
 ❗Si noe om style-propen (i løsningsforslaget?)❗
@@ -166,29 +185,10 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-🏆b)
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
 ## Oppgave n
 Oppgavetekst
 
-🏆a)
+🏆
 💡Tips
 
 <details>
@@ -205,7 +205,7 @@ Oppgavetekst
     )
   
 
-🏆b)
+🏆
 💡Tips
 
 <details>
