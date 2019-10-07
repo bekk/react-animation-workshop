@@ -185,10 +185,9 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-## Oppgave n
-Oppgavetekst
+## Oppgave 3: Score
 
-🏆
+🏆Lag en counter? 
 💡Tips
 
 <details>
@@ -203,9 +202,80 @@ Oppgavetekst
 
       />
     )
+  }
+```
+
+</details>
+
+## Oppgave 4: Utdeling av kort
+
+🏆Få kortene til å fly inn til riktig bunke på en kul måte ved starten av spillet
+💡Tips
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
   
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 5: KRIG!
 
 🏆
+💡`CardState: KRIG_OPEN`
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave 6: Stokking? Reset-knapp hvor kortene stokkes og flyr til riktig bunke? Ev. vinneranimasjon
+
+🏆
+💡
+
+<details>
+  <summary>🚨Løsningsforslag</summary>
+  
+  Dette er et løsningsforslag. Eksempelkode følger under
+  
+```js
+  const Komponent = props => {
+    return (
+      <motion.div
+
+      />
+    )
+  }
+```
+
+</details>
+
+## Oppgave n
+
+🏆Oppgavetekst
 💡Tips
 
 <details>
