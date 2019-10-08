@@ -98,6 +98,9 @@ const Card = ({
                 }
             }}
             ///////////////
+            whileHover={{
+                scale: 1.05
+            }}
         >
             <motion.div className={classNames('Card', isOpen ? 'open' : 'closed', suit)}>
                 {isOpen && <CardFace value={value} />}

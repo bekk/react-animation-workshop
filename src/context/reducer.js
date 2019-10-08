@@ -4,7 +4,8 @@ import uuid from 'uuid-random';
 export const Action = {
     PLAY: 'play',
     COMPARE: 'compare',
-    PLAY_KRIG: 'play_krig'
+    PLAY_KRIG: 'play_krig',
+    INITIATE_WAR: 'initiate_war'
 };
 
 export const CardState = {
@@ -19,7 +20,8 @@ export const CardState = {
 export const GameState = {
     IDLE: 'idle',
     PLAYING: 'playing',
-    KRIG: 'krig'
+    KRIG: 'krig',
+    PREPARE_FOR_WAR: 'prepare_for_war'
 };
 
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -33,26 +35,22 @@ const cards = suits
     .map(card => ({ ...card, id: uuid(), state: CardState.CLOSED }))
     .sort(shuffle);
 
-const setValueForCurrentCard = (player, key, value) => ({
-    ...player,
-    deck: player.deck.map((card, i) => (
-        i === player.currentCard ? { ...card, [key]: value } : card
+const withUpdatedCard = (deck, cardIndex, key, value) => (
+    deck.map((card, i) => (
+        i === cardIndex ? { ...card, [key]: value} : card
     ))
-});
+);
 
-const setCardState = (player, state) => {
-    return setValueForCurrentCard(player, 'state', state);
-};
-
-const setActiveCard = player => {
-    return setValueForCurrentCard(player, 'state', CardState.ACTIVE);
-};
-
-const setActiveCardWinner = (player, winner) => {
-    return setValueForCurrentCard(player, 'winner', winner);
-};
+const withUpdatedCards = (deck, from, to, key, value) => (
+    deck.map((card, i) => (
+        i >= from && i <= to
+            ? { ...card, [key]: value }
+            : card
+    ))
+);
 
 const compareCards = (playerCard, computerCard) => {
+    console.log('comparing player', playerCard.value, 'to computer', computerCard.value);
     if (playerCard.value === computerCard.value) {
         return 'krig';
     } else if ((playerCard.value > computerCard.value || playerCard.value === 1) && computerCard.value !== 1) {
@@ -63,17 +61,11 @@ const compareCards = (playerCard, computerCard) => {
 };
 
 const initialState = {
-    player: {
-        deck: cards.slice(0, cards.length / 2).map(card => ({ ...card, player: 'player' })),
-        currentCard: cards.length / 2 - 1,
-        wonCards: []
-    },
-    computer: {
-        deck: cards.slice(cards.length / 2).map(card => ({ ...card, player: 'computer' })),
-        currentCard: cards.length / 2 - 1,
-        wonCards: []
-    },
-    gameState: GameState.IDLE
+    playerDeck: cards.slice(0, cards.length / 2).map(card => ({ ...card, player: 'player' })),
+    computerDeck: cards.slice(cards.length / 2).map(card => ({ ...card, player: 'computer' })),
+    currentCard: cards.length / 2 - 1,
+    gameState: GameState.IDLE,
+    warCounter: 0
 };
 
 export const reducer = (state = initialState, action) => {
@@ -81,55 +73,62 @@ export const reducer = (state = initialState, action) => {
         case Action.PLAY: {
             return {
                 ...state,
-                player: setActiveCard(state.player),
-                computer: setActiveCard(state.computer),
+                playerDeck: withUpdatedCard(state.playerDeck, state.currentCard, 'state', CardState.ACTIVE),
+                computerDeck: withUpdatedCard(state.computerDeck, state.currentCard, 'state', CardState.ACTIVE),
                 gameState: GameState.PLAYING
             };
         }
         case Action.PLAY_KRIG: {
+            const endOfWar = state.warCounter !== 0 && state.warCounter % 3 === 0;
+            const cardState = endOfWar ? CardState.KRIG_OPEN : CardState.KRIG_CLOSED;
             return {
                 ...state,
-                player: {
-                    ...setCardState(state.player, action.cardState),
-                    currentCard: state.player.currentCard - 1
-                },
-                computer: {
-                    ...setCardState(state.computer, action.cardState),
-                    currentCard: state.computer.currentCard - 1
-                }
+                playerDeck: withUpdatedCard(state.playerDeck, state.currentCard, 'state', cardState),
+                computerDeck: withUpdatedCard(state.computerDeck, state.currentCard, 'state', cardState),
+                currentCard: endOfWar ? state.currentCard : state.currentCard - 1,
+                warCounter: endOfWar ? state.warCounter : state.warCounter + 1
             }
         }
         case Action.COMPARE: {
-            const playerCard = state.player.deck[state.player.currentCard];
-            const computerCard = state.computer.deck[state.computer.currentCard];
+            const playerCard = state.playerDeck[state.currentCard];
+            const computerCard = state.computerDeck[state.currentCard];
             const winner = compareCards(playerCard, computerCard);
+
+            console.log('winner:', winner);
 
             if (winner === 'krig') {
                 return {
                     ...state,
-                    gameState: GameState.KRIG,
-                    player: {
-                        ...state.player,
-                        currentCard: state.player.currentCard - 1
-                    },
-                    computer: {
-                        ...state.computer,
-                        currentCard: state.computer.currentCard - 1
-                    }
+                    gameState: GameState.PREPARE_FOR_WAR,
+                    currentCard: state.currentCard - 1
                 }
+            }
+
+            if (state.warCounter > 0) {
+                const from = state.currentCard;
+                const to = state.currentCard + state.warCounter + 1;
+                return {
+                    ...state,
+                    playerDeck: withUpdatedCards(state.playerDeck, from, to, 'winner', winner),
+                    computerDeck: withUpdatedCards(state.computerDeck, from, to, 'winner', winner),
+                    gameState: GameState.IDLE,
+                    currentCard: state.currentCard - 1,
+                    warCounter: 0
+                };
             }
 
             return {
                 ...state,
-                player: {
-                    ...setActiveCardWinner(state.player, winner),
-                    currentCard: state.player.currentCard - 1,
-                },
-                computer: {
-                    ...setActiveCardWinner(state.computer, winner),
-                    currentCard: state.computer.currentCard - 1,
-                },
-                gameState: GameState.IDLE
+                playerDeck: withUpdatedCard(state.playerDeck, state.currentCard, 'winner', winner),
+                computerDeck: withUpdatedCard(state.computerDeck, state.currentCard, 'winner', winner),
+                gameState: GameState.IDLE,
+                currentCard: state.currentCard - 1
+            }
+        }
+        case Action.INITIATE_WAR: {
+            return {
+                ...state,
+                gameState: GameState.KRIG
             }
         }
         default: {

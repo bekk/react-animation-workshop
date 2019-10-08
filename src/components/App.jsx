@@ -10,12 +10,12 @@ const App = () => {
             <div className="Table">
                 <div className="Cell" />
                 <div className="Cell">
-                    <Deck cards={state.computer.deck} />
+                    <Deck cards={state.computerDeck} />
                 </div>
                 <div className="Cell playarea_player" ref={playAreaRef} />
                 <div className="Cell playarea_computer" />
                 <div className="Cell">
-                    <Deck cards={state.player.deck}/>
+                    <Deck cards={state.playerDeck}/>
                 </div>
                 <div className="Cell" />
             </div>

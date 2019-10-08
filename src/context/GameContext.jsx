@@ -21,16 +21,18 @@ export const GameContextProvider = ({ children }) => {
             case GameState.KRIG: {
                 chain(
                     1000,
-                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
-                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
-                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_CLOSED }),
-                    () => dispatch({ type: Action.PLAY_KRIG, cardState: CardState.KRIG_OPEN }),
+                    () => dispatch({ type: Action.PLAY_KRIG }),
+                    () => dispatch({ type: Action.PLAY_KRIG }),
+                    () => dispatch({ type: Action.PLAY_KRIG }),
+                    () => dispatch({ type: Action.PLAY_KRIG }),
+                    () => dispatch({ type: Action.COMPARE })
                 );
                 break;
             }
-        }
-        if (state.gameState === GameState.PLAYING) {
-
+            case GameState.PREPARE_FOR_WAR: {
+                dispatch({ type: Action.INITIATE_WAR });
+                break;
+            }
         }
     }, [state.gameState]);
 
