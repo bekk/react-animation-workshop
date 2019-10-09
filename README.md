@@ -45,8 +45,6 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 ## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-### a)
-
 🏆Gjør det mulig å klikke på et kort og dra det rundt
 
 💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor.
@@ -63,8 +61,6 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 ```
 
 </details>
-
-### b)
 
 🏆Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
 
@@ -141,8 +137,6 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ## Oppgave 2: Animate
 `animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
 
-### a)
-
 🏆Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
 
 💡`Card`-komponenten har en `position`-prop som endres ved visse hendelser i spillet.
@@ -185,51 +179,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-## Oppgave 3: Score
-
-🏆Lag en counter? 
-💡Tips
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-## Oppgave 4: Utdeling av kort
-
-🏆Få kortene til å fly inn til riktig bunke på en kul måte ved starten av spillet
-💡Tips
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-## Oppgave 5: KRIG!
+## Oppgave 3: KRIG!
 
 🏆
 💡`CardState: KRIG_OPEN`
@@ -251,7 +201,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-## Oppgave 6: Stokking? Reset-knapp hvor kortene stokkes og flyr til riktig bunke? Ev. vinneranimasjon
+## Oppgave 3: Meny med bl a reset-knapp hvor kortene stokkes og flyr til riktig bunke? Ev. vinneranimasjon
 
 🏆
 💡
@@ -272,27 +222,3 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```
 
 </details>
-
-## Oppgave n
-
-🏆Oppgavetekst
-💡Tips
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-
-
