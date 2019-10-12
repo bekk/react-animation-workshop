@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import Deck from './Deck';
 import { GameContext } from '../context/GameContext';
 import './App.less';
+import { Menu } from './Menu/Menu';
 
 const App = () => {
     const { state, playAreaRef } = useContext(GameContext);
     return (
         <div className="App">
+            <div className="MenuContainer">
+                <Menu />
+            </div>
             <div className="Table">
                 <div className="Cell" />
                 <div className="Cell">
