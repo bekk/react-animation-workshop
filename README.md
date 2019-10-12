@@ -44,6 +44,8 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 
 💡Noen ganger kan det kanskje være vanskelig å vite hvor man skal begynne for å løse en oppgave - en rask titt på løsningsforslaget kan isåfall være lurt.
 
+💡Det er lov å leke seg med api'et, selv om du har løst akkurat det oppgaven ber deg om! Faktisk oppfordrer vi til det, da mange sannsynligvis vil kunne bli ferdig på godt under 2 timer hvis man bare gønner gjennom.
+
 ## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
