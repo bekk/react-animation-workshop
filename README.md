@@ -202,8 +202,8 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-## Oppgave 3: Legg til meny med animasjon
-I denne oppgaven skal du få legke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
+## Oppgave 4: Legg til meny med animasjon
+I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
 
 ```js
   <div className="App">
