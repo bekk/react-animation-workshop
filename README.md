@@ -419,3 +419,19 @@ Dette kan vi bruke på liste-elementene i menyen vår!
   ```
 
 </details>
+
+## Ferdig før tiden?
+
+Da har vi et par forslag til hva du kan gjøre nå:
+
+🏆Gjør det mulig å kunne rearrangere elementene i menyen med drag and drop
+
+💡Det finnes et [eksempel i Framer-dokumentasjonen](https://codesandbox.io/s/framer-motion-drag-to-reorder-pkm1k) hvor akkurat dette gjøres
+
+🏆Gjør om menyelementene til "Accordions" med noe random innhold
+
+💡[Accordion-eksempel i Framer docs'ene](https://codesandbox.io/s/framer-motion-accordion-qx958)
+
+🏆Vis en modal når man klikker på "Regler" i menyen som inneholder en lang og scrollbar tekst
+
+💡[Scroll-eksempel i Framer docs'ene](https://codesandbox.io/s/framer-motion-viewport-scroll-and-svg-path-animation-mwi35?fontsize=14&module=%2Fsrc%2FExample.tsx)
