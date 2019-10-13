@@ -220,6 +220,8 @@ I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyel
 
 Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan vi gjøre noe med.
 
+#### Oppgave 4a)
+
 🏆Legg på hover- og klikk-effekt på menyknappen
 
 💡Les om hvilke props motion-api'et støtter her: https://www.framer.com/api/motion/component/
@@ -246,6 +248,8 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 
 </details>
 
+#### Oppgave 4b)
+
 🏆Gjør noe tilsvarende med hvert menyelement
 
 <details>
@@ -259,31 +263,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 
 </details>
 
-<details>
-  <summary>💡Vis/skjul menyen like a pro</summary>
-  
-  En kul effekt er å bruke `clipPath` som en variant for å skjule/vise menyen. Endre `variants_menuArea` til følgende:
-  
-```js
-  const variants_menuArea = {
-        open: {
-            clipPath: `circle(500px at 40px 40px)`,
-            transition: {
-                type: "spring",
-                stiffness: 50,
-            }
-        },
-        closed: {
-            clipPath: "circle(30px at 40px 40px)",
-            transition: {
-                type: "spring",
-                stiffness: 50,
-            }
-        }
-    };
-```
-
-</details>
+#### Oppgave 4c)
 
 🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet
 
@@ -360,6 +340,8 @@ Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentl
 
 </details>
 
+#### Oppgave 4d)
+
 Nå skal vi legge på animasjoner på selve innholdet i menyen.
 
 🏆Få listen i menyen til å fly inn og ut fra toppen når menyen åpnes/lukkes.
@@ -403,6 +385,8 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
   ```
 
 </details>
+
+#### Oppgave 4e)
 
 Vi kan la etforelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
 
