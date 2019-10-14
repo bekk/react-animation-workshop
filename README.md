@@ -66,6 +66,7 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 ```
 
 </details>
+<br/>
 
 #### Oppgave 1b)
 
@@ -108,6 +109,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```
 
 </details>
+<br/>
 
 #### Oppgave 1c)
 
@@ -140,6 +142,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```
 
 </details>
+<br/>
 
 ## Oppgave 2: Animate
 `animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
@@ -187,6 +190,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```
 
 </details>
+<br/>
 
 ## Oppgave 3: KRIG! (kanskje ingen oppgave?)
 
@@ -210,6 +214,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```
 
 </details>
+<br/>
 
 ## Oppgave 4: Legg til meny med animasjon
 I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
@@ -254,6 +259,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 ```
 
 </details>
+<br/>
 
 #### Oppgave 4b)
 
@@ -269,6 +275,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 ```
 
 </details>
+<br/>
 
 #### Oppgave 4c)
 
@@ -346,6 +353,7 @@ Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentl
   </details>
 
 </details>
+<br/>
 
 #### Oppgave 4d)
 
@@ -392,6 +400,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
   ```
 
 </details>
+<br/>
 
 #### Oppgave 4e)
 
@@ -426,6 +435,7 @@ Dette kan vi bruke på liste-elementene i menyen vår!
   ```
 
 </details>
+<br/>
 
 ## Ferdig før tiden?
 
@@ -435,9 +445,13 @@ Da har vi et par forslag til hva du kan gjøre nå:
 
 💡Det finnes et [eksempel i Framer-dokumentasjonen](https://codesandbox.io/s/framer-motion-drag-to-reorder-pkm1k) hvor akkurat dette gjøres
 
+<br/>
+
 🏆Gjør om menyelementene til "Accordions" med noe random innhold
 
 💡[Accordion-eksempel i Framer docs'ene](https://codesandbox.io/s/framer-motion-accordion-qx958)
+
+<br/>
 
 🏆Vis en modal når man klikker på "Regler" i menyen som inneholder en lang og scrollbar tekst
 
