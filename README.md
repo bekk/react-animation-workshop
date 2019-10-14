@@ -49,6 +49,7 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 ## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
+#### Oppgave 1a)
 🏆Gjør det mulig å klikke på et kort og dra det rundt
 
 💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor.
@@ -65,6 +66,8 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 ```
 
 </details>
+
+#### Oppgave 1b)
 
 🏆Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
 
@@ -106,6 +109,8 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
+#### Oppgave 1c)
+
 🏆Drag skal kun være mulig hvis kortet er vendt ned. Fiks dette
 
 💡Man kan ha betinget drag slik: `drag={true}`
@@ -143,8 +148,6 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 💡`Card`-komponenten har en `position`-prop som endres ved visse hendelser i spillet.
 
-❗Si noe om style-propen (i løsningsforslaget?)❗
-
 <details>
   <summary>🚨Løsningsforslag</summary>
   
@@ -155,6 +158,10 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 ```js
   <motion.div 
     className={classNames('Card__wrapper', state, player)}
+    style={{
+                zIndex,
+                originY: `-${Sizes.CARD_HEIGHT / 2}px`
+            }}
     drag={state === CardState.CLOSED}
     dragElastic={1}
     animate={{
@@ -181,7 +188,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 </details>
 
-## Oppgave 3: KRIG!
+## Oppgave 3: KRIG! (kanskje ingen oppgave?)
 
 🏆
 
