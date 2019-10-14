@@ -13,20 +13,24 @@ const App = () => {
                 <Menu />
             </div>
             <div className="Table">
-                <div className="Cell Score">
-                    {state.score.computer}
-                </div>
+                <div className="Cell" />
                 <div className="Cell">
                     <Deck cards={state.computerDeck} />
                 </div>
-                <div className="Cell playarea_player" ref={playAreaRef} />
-                <div className="Cell playarea_computer" />
+                <div className="Cell playarea_player" ref={playAreaRef}>
+                    <span className="Score player">
+                        {state.score.player}
+                    </span>
+                </div>
+                <div className="Cell playarea_computer">
+                    <span className="Score computer">
+                        {state.score.computer}
+                    </span>
+                </div>
                 <div className="Cell">
                     <Deck cards={state.playerDeck}/>
                 </div>
-                <div className="Cell Score">
-                    {state.score.player}
-                </div>
+                <div className="Cell" />
             </div>
         </div>
     )
