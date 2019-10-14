@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef } from 'react';
 import { chain, intersects, later } from './util';
-import { Action, CardState, GameState, useGameReducer } from './reducer';
+import { Action, GameState, useGameReducer } from './reducer';
 
 export const GameContext = createContext({});
 

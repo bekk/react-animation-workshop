@@ -39,13 +39,15 @@ const Card = ({
     player,
     winner
 }) => {
-    const { intersectsPlayArea, dispatch } = useContext(GameContext);
+    const { intersectsPlayArea, dispatch, state: gameState } = useContext(GameContext);
     const [isOpen, setIsOpen] = useState(false);
     const [zIndex, setZIndex] = useState(index);
 
     // Animasjons-state
     const [rotation, setRotation] = useState((Math.random() - 0.5) * 2);
     const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const isOnTop = gameState.currentCard === index;
 
     useEffect(() => {
         if (state !== CardState.KRIG_CLOSED) {
@@ -87,8 +89,7 @@ const Card = ({
                 zIndex,
                 originY: `-${Sizes.CARD_HEIGHT / 2}px`
             }}
-            // OPPGAVE 1 //
-            drag={state === CardState.CLOSED}
+            drag={isOnTop}
             dragElastic={1}
             dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0
             }}
@@ -97,8 +98,7 @@ const Card = ({
                     dispatch({ type: Action.PLAY });
                 }
             }}
-            ///////////////
-            whileHover={{
+            whileHover={isOnTop && {
                 scale: 1.05
             }}
         >

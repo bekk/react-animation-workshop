@@ -79,6 +79,9 @@ export const reducer = (state = initialState, action) => {
             };
         }
         case Action.PLAY_KRIG: {
+            if (state.currentCard < 0) {
+                return state;
+            }
             const endOfWar = state.warCounter !== 0 && state.warCounter % 3 === 0;
             const cardState = endOfWar ? CardState.KRIG_OPEN : CardState.KRIG_CLOSED;
             return {
