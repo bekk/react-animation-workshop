@@ -50,7 +50,6 @@ const withUpdatedCards = (deck, from, to, key, value) => (
 );
 
 const compareCards = (playerCard, computerCard) => {
-    console.log('comparing player', playerCard.value, 'to computer', computerCard.value);
     if (playerCard.value === computerCard.value) {
         return 'krig';
     } else if ((playerCard.value > computerCard.value || playerCard.value === 1) && computerCard.value !== 1) {
@@ -65,7 +64,11 @@ const initialState = {
     computerDeck: cards.slice(cards.length / 2).map(card => ({ ...card, player: 'computer' })),
     currentCard: cards.length / 2 - 1,
     gameState: GameState.IDLE,
-    warCounter: 0
+    warCounter: 0,
+    score: {
+        player: 0,
+        computer: 0
+    }
 };
 
 export const reducer = (state = initialState, action) => {
@@ -82,7 +85,8 @@ export const reducer = (state = initialState, action) => {
             if (state.currentCard < 0) {
                 return state;
             }
-            const endOfWar = state.warCounter !== 0 && state.warCounter % 3 === 0;
+            const endOfWar =
+                (state.warCounter !== 0 && state.warCounter % 3 === 0) || state.currentCard === 0;
             const cardState = endOfWar ? CardState.KRIG_OPEN : CardState.KRIG_CLOSED;
             return {
                 ...state,
@@ -93,11 +97,10 @@ export const reducer = (state = initialState, action) => {
             }
         }
         case Action.COMPARE: {
-            const playerCard = state.playerDeck[state.currentCard];
-            const computerCard = state.computerDeck[state.currentCard];
+            const index = state.currentCard < 0 ? 0 : state.currentCard;
+            const playerCard = state.playerDeck[index];
+            const computerCard = state.computerDeck[index];
             const winner = compareCards(playerCard, computerCard);
-
-            console.log('winner:', winner);
 
             if (winner === 'krig') {
                 return {
@@ -116,7 +119,10 @@ export const reducer = (state = initialState, action) => {
                     computerDeck: withUpdatedCards(state.computerDeck, from, to, 'winner', winner),
                     gameState: GameState.IDLE,
                     currentCard: state.currentCard - 1,
-                    warCounter: 0
+                    warCounter: 0,
+                    score: winner === 'player'
+                        ? { ...state.score, player: state.score.player + 2 + (state.warCounter + 1) * 2 }
+                        : { ...state.score, computer: state.score.computer + 2 + (state.warCounter + 1) * 2 }
                 };
             }
 
@@ -125,7 +131,10 @@ export const reducer = (state = initialState, action) => {
                 playerDeck: withUpdatedCard(state.playerDeck, state.currentCard, 'winner', winner),
                 computerDeck: withUpdatedCard(state.computerDeck, state.currentCard, 'winner', winner),
                 gameState: GameState.IDLE,
-                currentCard: state.currentCard - 1
+                currentCard: state.currentCard - 1,
+                score: winner === 'player'
+                    ? { ...state.score, player: state.score.player + 2 }
+                    : { ...state.score, computer: state.score.computer + 2 }
             }
         }
         case Action.INITIATE_WAR: {
