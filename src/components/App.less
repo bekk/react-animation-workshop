@@ -57,47 +57,6 @@
                  transparent 20px
          );
        }
-
-      .Score {
-        position: relative;
-        display: flex;
-        height: 8rem;
-        justify-content: center;
-        align-items: center;
-        font-size: 4rem;
-        color: #fff;
-
-        @xTranslation: 200px;
-        @yTranslation: -135px;
-
-        &.player {
-          transform: translate(-@xTranslation, @yTranslation);
-
-          &:before {
-            content: 'Spiller';
-          }
-        }
-
-        &.computer {
-          transform: translate(@xTranslation, @yTranslation);
-
-          &:before {
-            content: 'Datamaskin';
-          }
-        }
-
-        &:before {
-          position: absolute;
-          color: @color;
-          width: 100%;
-          text-align: center;
-          top: 0;
-          left: 0;
-          font-family: 'Raleway', sans-serif;
-          font-weight: 900;
-          font-size: 1.5rem;
-        }
-      }
     }
   }
 }

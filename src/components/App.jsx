@@ -3,6 +3,7 @@ import Deck from './Deck';
 import { Menu } from './Menu/Menu';
 import { GameContext } from '../context/GameContext';
 import './App.less';
+import { Score } from './Score/Score';
 
 const App = () => {
     const { state, playAreaRef } = useContext(GameContext);
@@ -12,21 +13,16 @@ const App = () => {
             <div className="MenuContainer">
                 <Menu />
             </div>
+            <div className="ScoreContainer">
+                <Score playerScore={state.score.player} computerScore={state.score.computer}/>
+            </div>
             <div className="Table">
                 <div className="Cell" />
                 <div className="Cell">
                     <Deck cards={state.computerDeck} />
                 </div>
-                <div className="Cell playarea_player" ref={playAreaRef}>
-                    <span className="Score player">
-                        {state.score.player}
-                    </span>
-                </div>
-                <div className="Cell playarea_computer">
-                    <span className="Score computer">
-                        {state.score.computer}
-                    </span>
-                </div>
+                <div className="Cell playarea_player" ref={playAreaRef}/>
+                <div className="Cell playarea_computer"/>
                 <div className="Cell">
                     <Deck cards={state.playerDeck}/>
                 </div>
