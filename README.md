@@ -417,6 +417,16 @@ Dette kan vi bruke på liste-elementene i menyen vår!
 </details>
 <br/>
 
+## Oppgave 5: Animere poengsummene
+
+På tide å gjøre noe med tallene som viser poengsummene! Her er det mange muligheter, så dette blir en åpen oppgave:
+
+🏆Bruk det du har lært til nå (eller bruk og lær noe helt nytt!) til å legge på animasjon på tallene hver gang poengsummen oppdateres.
+
+💡Et par relativt simple muligheter:
+* Legge på rotasjon
+* Skalere tallene iht. størrelsesforholdet på poengsummene
+
 ## Ferdig før tiden?
 
 Da har vi et par forslag til hva du kan gjøre nå:
