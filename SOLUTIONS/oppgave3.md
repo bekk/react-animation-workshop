@@ -10,7 +10,7 @@ export const Menu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <motion.nav className="Menu" initial={false} animate={isOpen ? "open" : "closed"}>
+        <motion.nav className="Menu" initial="closed" animate={isOpen ? "open" : "closed"}>
             <MenuArea />
             <MenuButton onClick={setIsOpen} clicked={isOpen}/>
         </motion.nav>
