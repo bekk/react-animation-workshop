@@ -6,7 +6,7 @@ Velkommen til animasjonsworkshop! I denne workshopen skal du få leke deg med et
 
 Selve dokumentasjonen til Framer Motion API'et [finner du her](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), hvor du blant annet finner enkle eksempler til de mest grunnleggende funksjonene og mulighetene API'et gir.
 
-Tips: Under "Examples", scroll helt ned til "More", så finner du lenker til fungerende kodeeksempler i CodeSandbox!
+Tips: Under "Examples" i dokumentasjonen vi har linket til, scroll helt ned til "More", så finner du lenker til fungerende kodeeksempler i CodeSandbox!
 
 Lest introduskjonsartikkelen? Da får det være nok introduksjon, så la oss bare komme i gang!
 
@@ -49,17 +49,18 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 ## Oppgave 1: Drag
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
+La oss bryte ned oppgaven:
 #### Oppgave 1a)
-🏆Gjør det mulig å klikke på et kort og dra det rundt
+🏆Vi begynner med det første steget: gjør det mulig å klikke på et kort og dra det rundt, uten noen regler om hvor det skal lande.
 
-💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor.
+💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor en vanlig div.
 
 <details>
   <summary>🚨Løsningsforslag</summary>
 
 ```js
-  <motion.div 
-    className={classNames('Card__wrapper', state, player)}
+  <motion.div
+    ...
     drag
   >
     
@@ -70,9 +71,11 @@ I denne oppgaven skal du klare å dra et kort fra en bunke til området der det 
 
 #### Oppgave 1b)
 
-🏆Legg på constrains slik at kortet ikke flyter avgårde, men stopper når det lander på "Dra kort hit"
+🏆Legg på constraints slik at kortet ikke flyter avgårde. Ikke tenk på at det skal komme til riktig posisjon enda, dette kommer senere.
 
-💡`<motion.div>` har følgende relevante props: `dragConstraints`, `dragElastic` og `onDragEnd`. Sett sistnevnte til: 
+💡`<motion.div>` har følgende relevante props: `dragConstraints`, `dragElastic` og `onDragEnd`.
+
+Vi har som sagt laget logikken, så dere skal få lov til å kose dere med animasjonen, så sett sistnevnte til:
 
 ```js
 onDragEnd={(event) => {
@@ -89,9 +92,8 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
   Trikset for å få det her til å fungere i spillet er å sette constraints'ene til 0 i alle retninger. Framer sin `drag` har en elastisitet man kan styre med `dragElastic`-prop'en, som gjør at man kan få dratt kortet til riktig plassering selv om det ikke får lov til å "lande" noe annet sted enn der det startet.
 
 ```js
-  <motion.div 
-    className={classNames('Card__wrapper', state, player)}
-    drag
+  <motion.div
+    ...
     dragElastic={1}
     dragConstraints={{
         top: 0,
@@ -123,20 +125,10 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
   <summary>🚨Løsningsforslag</summary>
 
 ```js
-  <motion.div 
-    className={classNames('Card__wrapper', state, player)}
+  <motion.div
+    ...
     drag={state === CardState.CLOSED}
-    dragConstraints={{
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-    }}
-    onDragEnd={(event) => {
-        if (intersectsPlayArea(event)) {
-            dispatch({ type: Action.PLAY });
-        }
-    }}
+    ...
   >
     
 ```
@@ -145,6 +137,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 <br/>
 
 ## Oppgave 2: Animate
+La oss gå litt videre med animeringen!
 `animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
 
 🏆Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
@@ -153,34 +146,16 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 
 <details>
   <summary>🚨Løsningsforslag</summary>
-  
-  Her er all logikk implementert allerede, så dette innebærer bare å legge på en `animate`-prop på `<motion.div>`-en og spread'e `position`-objektet, som oppdateres med riktig posisjoner avhengig av hva som skjer i spillet.
-  
+  Her er all logikk implementert allerede, så dette innebærer bare å legge på en `animate`-prop på `<motion.div>`-en og sette den til `position`-objektet, som oppdateres med riktig posisjoner avhengig av hva som skjer i spillet.
+
   Her har vi også forøvrig lagt på en `rotate`-verdi i `animate`-prop'en for å få kortene til å se litt mer troverdige ut når de ligger i de forskjellige bunkene. Ganske effektfullt (og ikke minst enkelt, bare med en enkelt prop)!
   
 ```js
-  <motion.div 
-    className={classNames('Card__wrapper', state, player)}
-    style={{
-                zIndex,
-                originY: `-${Sizes.CARD_HEIGHT / 2}px`
-            }}
-    drag={state === CardState.CLOSED}
-    dragElastic={1}
+  <motion.div
+    ...
     animate={{
         rotate: rotation,
         ...position
-    }}
-    dragConstraints={{
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-    }}
-    onDragEnd={(event) => {
-        if (intersectsPlayArea(event)) {
-            dispatch({ type: Action.PLAY });
-        }
     }}
 >
     <motion.div className={classNames('Card', isOpen ? 'open' : 'closed', suit)}>
@@ -234,9 +209,9 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 
 #### Oppgave 4a)
 
-🏆Legg på hover- og klikk-effekt på menyknappen
+🏆Gå i `Menu.jsx` og legg på enkel hover- og klikk-effekt på menyknappen (åpne og lukke menyen kommer i en senere oppgave!)
 
-💡Les om hvilke props motion-api'et støtter her: https://www.framer.com/api/motion/component/
+💡Les om hvilke props motion-api'et støtter her: https://www.framer.com/api/motion/component/ og https://www.framer.com/api/motion/examples/
 
 <details>
   <summary>🚨Løsningsforslag</summary>
@@ -249,7 +224,11 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
     clicked
 }) => {
     return (
-        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 1.2}} className="MenuButton" onClick={() => onClick(!clicked)}>
+        <motion.button
+            ...
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 1.2}}
+        >
             <div className="bar1"></div>
             <div className="bar2"></div>
             <div className="bar3"></div>
@@ -279,21 +258,22 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 
 #### Oppgave 4c)
 
-🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet
+🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet.
 
 💡Les om `variants` her: https://www.framer.com/api/motion/animation/#variants. "Visuell state" kan settes i `animate`-propen til et element, og hvis elementet (eller barn-elementer) tar inn en `variants`-prop'en med et objekt som definerer ulike "views" for hver av statene vil det kunne animeres forskjellig basert på den visuelle staten.
+💡Se i `Menu` og `MenuArea` komponenten
 
 <details>
   <summary>🚨Løsningsforslag</summary>
   
-  Først må vi endre `nav`-elementet til en `motion.nav` og sette "den visuelle staten" (*visual state* som doc'et kaller det) til `motion.nav`-elementet til enten `"open"` eller `"closed"` avhengig av om knappen er klikket eller ikke. Gjør vi det kan vi lage og sette `variants` i underelementene til `motion.nav`-elementet som inneholder disse to statene, som da kan rendres/animeres ulikt avhengig av den visuelle staten.
+  Først må vi endre `nav`-elementet til en `motion.nav` og sette "den visuelle staten" (*visual state* som doc'en kaller det) til `motion.nav`-elementet til enten `"open"` eller `"closed"` avhengig av om knappen er klikket eller ikke. Gjør vi det kan vi lage og sette `variants` i underelementene til `motion.nav`-elementet som inneholder disse to statene, som da kan rendres/animeres ulikt avhengig av den visuelle staten.
   
   ```js
   export const Menu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <motion.nav className="Menu" initial={false} animate={isOpen ? "open" : "closed"}>
+        <motion.nav className="Menu" initial="closed" animate={isOpen ? "open" : "closed"}>
             <MenuArea />
             <MenuButton onClick={setIsOpen} clicked={isOpen}/>
         </motion.nav>
@@ -362,8 +342,8 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
 🏆Få listen i menyen til å fly inn og ut fra toppen når menyen åpnes/lukkes.
 
 💡Husk at barn av elementer som har en visuell state også kan bruke `variants` til å rendres/animeres avhengig av staten.
-
 💡Sett på en liten delay på kortet når det lukkes slik at innholdet rekker å animeres ferdig før menyen forsvinner.
+💡Se `MenuNavigation`
 
 <details>
   <summary>🚨Løsningsforslag</summary>
@@ -404,7 +384,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
 
 #### Oppgave 4e)
 
-Vi kan la etforelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
+Vi kan la et forelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
 
 Dette kan vi bruke på liste-elementene i menyen vår!
 
