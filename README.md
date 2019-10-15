@@ -167,31 +167,7 @@ La oss gå litt videre med animeringen!
 </details>
 <br/>
 
-## Oppgave 3: KRIG! (kanskje ingen oppgave?)
-
-🏆
-
-💡`CardState: KRIG_OPEN`
-
-<details>
-  <summary>🚨Løsningsforslag</summary>
-  
-  Dette er et løsningsforslag. Eksempelkode følger under
-  
-```js
-  const Komponent = props => {
-    return (
-      <motion.div
-
-      />
-    )
-  }
-```
-
-</details>
-<br/>
-
-## Oppgave 4: Legg til meny med animasjon
+## Oppgave 3: Legg til meny med animasjon
 I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
 
 ```js
@@ -207,7 +183,7 @@ I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyel
 
 Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan vi gjøre noe med.
 
-#### Oppgave 4a)
+#### Oppgave 3a)
 
 🏆Gå i `Menu.jsx` og legg på enkel hover- og klikk-effekt på menyknappen (åpne og lukke menyen kommer i en senere oppgave!)
 
@@ -240,7 +216,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 </details>
 <br/>
 
-#### Oppgave 4b)
+#### Oppgave 3b)
 
 🏆Gjør noe tilsvarende med hvert menyelement
 
@@ -256,7 +232,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 </details>
 <br/>
 
-#### Oppgave 4c)
+#### Oppgave 3c)
 
 🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet.
 
@@ -335,7 +311,7 @@ Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentl
 </details>
 <br/>
 
-#### Oppgave 4d)
+#### Oppgave 3d)
 
 Nå skal vi legge på animasjoner på selve innholdet i menyen.
 
@@ -382,7 +358,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
 </details>
 <br/>
 
-#### Oppgave 4e)
+#### Oppgave 3e)
 
 Vi kan la et forelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
 
@@ -417,9 +393,18 @@ Dette kan vi bruke på liste-elementene i menyen vår!
 </details>
 <br/>
 
-## Oppgave 5: Animere poengsummene
+## Oppgave 4: Animere poengsummer
 
-På tide å gjøre noe med tallene som viser poengsummene! Her er det mange muligheter, så dette blir en åpen oppgave:
+Siste oppgave blir å legge på animasjon på en feature som viser poengsummene til spillerne. Her er det mange muligheter, så dette blir en åpen oppgave, men aller først: Rendre `<Score>`-komponenten i `App`, for eksempel rett etter menyen:
+
+```js
+<div className="MenuContainer">
+    <Menu />
+</div>
+<div className="ScoreContainer">
+    <Score playerScore={state.score.player} computerScore={state.score.computer}/>
+</div>
+```
 
 🏆Bruk det du har lært til nå (eller bruk og lær noe helt nytt!) til å legge på animasjon på tallene hver gang poengsummen oppdateres.
 
