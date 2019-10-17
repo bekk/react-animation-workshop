@@ -26,16 +26,12 @@ Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
 </details>
 
 # Oppsett
-Du kan enten velge å kode i CodeSandbox eller klone repoet og kode lokalt:
-
-### Codesandbox
-*Link til codesandbox her*
-
-### Lokalt
-1. Åpne en terminal og kjør kommandoen 
+1. Klon repoet
 `git clone git@github.com:bekk/react-animation-workshop.git`
 
-2. Naviger til repo-mappen og kjør `npm install` etterfulgt av `npm run start` og appen vil kjøre på `localhost:1234` i nettleseren.
+2. Sjekk ut branchen `master_workshop_edition`
+
+3. Naviger til repo-mappen og kjør `npm install` etterfulgt av `npm run start` og appen vil kjøre på `localhost:1234` i nettleseren.
 
 # Oppgaver
 Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill.
