@@ -26,7 +26,7 @@ Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
 </details>
 
 # Oppsett
-1. Klon repoet
+1. Klon repoet: 
 `git clone git@github.com:bekk/react-animation-workshop.git`
 
 2. Sjekk ut branchen `master_workshop_edition`
