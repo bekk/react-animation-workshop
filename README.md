@@ -132,19 +132,17 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 </details>
 <br/>
 
-## Oppgave 2: Animate (Stephen oversetter)
-La oss gå litt videre med animeringen!
-`animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
+## Exercise 2: Animate
+Let's continue animating!
+The `animate` prop takes an object with values that tell the motion component how to animate itself. Whenever any of these values change, the motion component will smoothly animate itself accordingly. [Check out the official docs](https://www.framer.com/api/motion/animation/) for a complete overview of what `animate` can do. Examples of fields you can specify in the `animate` object are `rotation` and `scale`. For now you should probably focus on two fields you can use to position the component: `x` and `y`.
 
-🏆Sørg for at kortene flyttes til riktig posisjon når kortet dras til det skraverte området
+🏆Make the cards move to the right position when they're dragged to the shaded area.
 
-💡`Card`-komponenten har en `position`-prop som endres ved visse hendelser i spillet.
+💡The `Card` component has a state variable, `position`, that updates for certain events in the course of the game. Use this to update the motion component.
 
 <details>
   <summary>🚨Løsningsforslag</summary>
-  Her er all logikk implementert allerede, så dette innebærer bare å legge på en `animate`-prop på `<motion.div>`-en og sette den til `position`-objektet, som oppdateres med riktig posisjoner avhengig av hva som skjer i spillet.
-
-  Her har vi også forøvrig lagt på en `rotate`-verdi i `animate`-prop'en for å få kortene til å se litt mer troverdige ut når de ligger i de forskjellige bunkene. Ganske effektfullt (og ikke minst enkelt, bare med en enkelt prop)!
+  All the game logic has already been implemented, which makes this exercise pretty straightforward. Simply assign the `position` variable to the motion components' `animate` prop. Here we've also assigned a rotation to the `animate` object for added realism, but this is optional.
   
 ```js
   <motion.div
