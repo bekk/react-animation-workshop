@@ -143,7 +143,7 @@ The `animate` prop takes an object with values that tell the motion component ho
 <details>
   <summary>🚨Solution</summary>
   All the game logic has already been implemented, which makes this exercise pretty straightforward. Simply assign the `position` variable to the motion components' `animate` prop. Here we've also assigned a rotation to the `animate` object for added realism, but this is optional.
-  
+
 ```js
   <motion.div
     ...
@@ -161,8 +161,8 @@ The `animate` prop takes an object with values that tell the motion component ho
 </details>
 <br/>
 
-## Oppgave 3: Legg til meny med animasjon (Stephen oversetter)
-I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
+## Exercise 3: Add an animated menu
+Every game needs a menu screen, and since this workshop is all about animations our menu is of course going to be an animated menu. We have prepared a simple menu component you can use which you'll find in `/components/Menu/Menu.jsx`. Before you start you need to add it to the app by rendering it at the top of the `App` component:
 
 ```js
   <div className="App">
@@ -175,7 +175,7 @@ I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyel
       .
 ```
 
-Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan vi gjøre noe med.
+As you can see the menu is quite static at the moment, but we'll fix this in a moment.
 
 #### Oppgave 3a) (Stephen oversetter)
 
