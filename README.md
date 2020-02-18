@@ -33,7 +33,7 @@ Here is a full proposal of how you *may* solve the exercise.
 
 3. Navigate to the repository folder and run `npm install` followed by `npm run start` and the app will run on `localhost:1234` in your browser.
 
-# Oppgaver (Bendik oversetter
+# Exercises
 We've made a simple card game that will be the starting point for everything you'll do in this workshop. The cardgame is called **war** ("Krig" in Norwegian). Just ask any of us if you don't know or remember the rules, but it doesn't really matter, because we've implemented all the game mechanics for you. What you should focus on is the possible **animations** that may suit such a game.
 
 💡There is a lot of game logic implemented here and there in the app, and although we have tried to hide as much as we possible, you'll still have to deal with files and components that contain some logic. However, we will try to guide you to the right places in the app where the tasks is supposed to be solved.
@@ -42,13 +42,13 @@ We've made a simple card game that will be the starting point for everything you
 
 💡You are allowed to continue to play with the API, even after you've done exactly what the exercise asks you to do. In fact, we encourage it! You'll probably learn a lot just trying out different things on your own.
 
-## Exercise 1: Drag 💃(Bendik oversetter)
-After doing this exercise you should be able to pull a card from one of the card stacks to the area that says *Drag the card here*  
+## Exercise 1: Drag 💃
+After doing this exercise you should be able to pull a card from one of the card stacks to the area that says *Drag the card here*.
 
 Let's break it down:
 
 #### Exercise 1a)
-🏆We start with the first step: Make it possible to click on a card and drag it around (without any rules of where it should land)
+🏆We start with the first step: Make it possible to click on a card and drag it around (without any rules of where it should land).
 
 💡Navigate to `components/Card/Card.jsx` and change the component such that it returns a `<motion.div />` instead of a regular `<div>`
 
