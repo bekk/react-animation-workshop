@@ -141,7 +141,7 @@ The `animate` prop takes an object with values that tell the motion component ho
 💡The `Card` component has a state variable, `position`, that updates for certain events in the course of the game. Use this to update the motion component.
 
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   All the game logic has already been implemented, which makes this exercise pretty straightforward. Simply assign the `position` variable to the motion components' `animate` prop. Here we've also assigned a rotation to the `animate` object for added realism, but this is optional.
   
 ```js
