@@ -1,7 +1,7 @@
 # react-animation-workshop
 Animasjonsworkshop for React-faggruppen 2019!
 
-# Introduksjon
+# Introduksjon (Bendik oversetter)
 Velkommen til animasjonsworkshop! I denne workshopen skal du få leke deg med et relativt nytt animasjonsrammeverk: **Framer Motion**! Versjon 1 av Framer Motion ble lansert i juni i år, og er etterfølgeren til *Pose*, for de som er kjent med det. For en kort intro til Framer Motion kan du lese [denne artikkelen](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67).
 
 Selve dokumentasjonen til Framer Motion API'et [finner du her](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), hvor du blant annet finner enkle eksempler til de mest grunnleggende funksjonene og mulighetene API'et gir.
@@ -10,7 +10,7 @@ Tips: Under "Examples" i dokumentasjonen vi har linket til, scroll helt ned til 
 
 Lest introduskjonsartikkelen? Da får det være nok introduksjon, så la oss bare komme i gang!
 
-## Emoji-guide
+## Emoji-guide (Bendik oversetter)
 
 Du kommer til å se noen emojis i oppgavene. De betyr ca det her:
 
@@ -25,7 +25,7 @@ Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
 
 </details>
 
-# Oppsett
+# Oppsett (Bendik oversetter)
 1. Klon repoet: 
 `git clone git@github.com:bekk/react-animation-workshop.git`
 
@@ -33,7 +33,7 @@ Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
 
 3. Naviger til repo-mappen og kjør `npm install` etterfulgt av `npm run start` og appen vil kjøre på `localhost:1234` i nettleseren.
 
-# Oppgaver
+# Oppgaver (Bendik oversetter)
 Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill.
 
 💡Det er mye spillogikk implementert her og der i appen, og selv om vi har prøvd å skjule så mye vi kan vil du fortsatt måtte forholde deg til filer og komponenter som inneholder en del logikk. Vi skal derimot prøve å guide dere til de riktige stedene i appen der oppgavene skal løses.
@@ -42,7 +42,7 @@ Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspun
 
 💡Det er lov å leke seg med api'et, selv om du har løst akkurat det oppgaven ber deg om! Faktisk oppfordrer vi til det, da mange sannsynligvis vil kunne bli ferdig på godt under 2 timer hvis man bare gønner gjennom 😇
 
-## Oppgave 1: Drag
+## Oppgave 1: Drag (Bendik oversetter)
 I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
 La oss bryte ned oppgaven:
