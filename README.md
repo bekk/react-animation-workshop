@@ -132,7 +132,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 </details>
 <br/>
 
-## Oppgave 2: Animate
+## Oppgave 2: Animate (Stephen oversetter)
 La oss gå litt videre med animeringen!
 `animate`-prop'en lar deg spesifisere et objekt av en rekke verdier, og når noen av disse endres vil motion-komponenten automatisk animeres med/til de nye verdiene. Eksempler er `scale` og `rotation`, eller mer relevant i dette tilfellet: posisjon i form av `x` og `y`. [Her er det bare å leke seg!](https://www.framer.com/api/motion/animation/) For å komme videre med spillet derimot, gjør følgende:
 
@@ -163,7 +163,7 @@ La oss gå litt videre med animeringen!
 </details>
 <br/>
 
-## Oppgave 3: Legg til meny med animasjon
+## Oppgave 3: Legg til meny med animasjon (Stephen oversetter)
 I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyelement. Vi har laget en enkel meny som du finner i `/components/Menu/Menu.jsx` som du kan rendre øverst i `App`:
 
 ```js
@@ -179,7 +179,7 @@ I denne oppgaven skal du få leke deg med å legge til animasjoner på et menyel
 
 Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan vi gjøre noe med.
 
-#### Oppgave 3a)
+#### Oppgave 3a) (Stephen oversetter)
 
 🏆Gå i `Menu.jsx` og legg på enkel hover- og klikk-effekt på menyknappen (åpne og lukke menyen kommer i en senere oppgave!)
 
@@ -212,7 +212,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 </details>
 <br/>
 
-#### Oppgave 3b)
+#### Oppgave 3b) (Stephen oversetter)
 
 🏆Gjør noe tilsvarende med hvert menyelement
 
@@ -228,7 +228,7 @@ Som du ser vises menyen foreløpig bare ut som et statisk element, men dette kan
 </details>
 <br/>
 
-#### Oppgave 3c)
+#### Oppgave 3c) (Stephen oversetter)
 
 🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet.
 
@@ -307,7 +307,7 @@ Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentl
 </details>
 <br/>
 
-#### Oppgave 3d)
+#### Oppgave 3d) (Stephen oversetter)
 
 Nå skal vi legge på animasjoner på selve innholdet i menyen.
 
@@ -354,7 +354,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
 </details>
 <br/>
 
-#### Oppgave 3e)
+#### Oppgave 3e) (Stephen oversetter)
 
 Vi kan la et forelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
 
@@ -389,7 +389,7 @@ Dette kan vi bruke på liste-elementene i menyen vår!
 </details>
 <br/>
 
-## Oppgave 4: Animere poengsummer
+## Oppgave 4: Animere poengsummer (Stephen oversetter)
 
 Siste oppgave blir å legge på animasjon på en feature som viser poengsummene til spillerne. Her er det mange muligheter, så dette blir en åpen oppgave, men aller først: Rendre `<Score>`-komponenten i `App`, for eksempel rett etter menyen:
 
@@ -408,7 +408,7 @@ Siste oppgave blir å legge på animasjon på en feature som viser poengsummene 
 * Legge på rotasjon
 * Skalere tallene iht. størrelsesforholdet på poengsummene
 
-## Ferdig før tiden?
+## Ferdig før tiden? (Stephen oversetter)
 
 Da har vi et par forslag til hva du kan gjøre nå:
 
