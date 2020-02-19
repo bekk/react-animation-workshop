@@ -2,7 +2,7 @@
 Animation workshop for Booster Conference 2020!
 
 # Introduction
-Welcome to this animation workshop! In this workshop you'll get yo play with a relatively new framework for making animations in React: **Framer Motion!** V1 of Framer Motion was released in June this year and is the successor to *Pose*, for those who are familiar with that. Read [this article](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67) for a brief intro to Framer Motion.
+Welcome to this animation workshop! In this workshop you'll get yo play with a relatively new framework for making animations in React: **Framer Motion!** V1 of Framer Motion was released in June last year and is the successor to *Pose*, for those who are familiar with that. Read [this article](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67) for a brief intro to Framer Motion.
 
 The official documentation for the Framer Motion API [can be found here](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), where you'll find simple examples of the most basic functions and possibilities that the API provides, among other things.
 
