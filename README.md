@@ -1,59 +1,58 @@
 # react-animation-workshop
-Animation workshop for Booster Conference 2020!
+Animasjonsworkshop for React-faggruppen 2019!
 
-# Introduction
-Welcome to this animation workshop! In this workshop you'll get yo play with a relatively new framework for making animations in React: **Framer Motion!** V1 of Framer Motion was released in June this year and is the successor to *Pose*, for those who are familiar with that. Read [this article](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67) for a brief intro to Framer Motion.
+# Introduksjon (Bendik oversetter)
+Velkommen til animasjonsworkshop! I denne workshopen skal du få leke deg med et relativt nytt animasjonsrammeverk: **Framer Motion**! Versjon 1 av Framer Motion ble lansert i juni i år, og er etterfølgeren til *Pose*, for de som er kjent med det. For en kort intro til Framer Motion kan du lese [denne artikkelen](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67).
 
-The official documentation for the Framer Motion API [can be found here](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), where you'll find simple examples of the most basic functions and possibilities that the API provides, among other things.
+Selve dokumentasjonen til Framer Motion API'et [finner du her](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), hvor du blant annet finner enkle eksempler til de mest grunnleggende funksjonene og mulighetene API'et gir.
 
-Tip: Scroll down to the "More" section, located under "Examples" in the documentation, and you'll find links to working code examples in CodeSandbox!
+Tips: Under "Examples" i dokumentasjonen vi har linket til, scroll helt ned til "More", så finner du lenker til fungerende kodeeksempler i CodeSandbox!
 
-Done reading the introductory article? Then you are ready to move on to the exercises!
+Lest introduskjonsartikkelen? Da får det være nok introduksjon, så la oss bare komme i gang!
 
-## Emoji-guide
+## Emoji-guide (Bendik oversetter)
 
-You will see some emojis in the exercise descriptions. They mean the following:
+Du kommer til å se noen emojis i oppgavene. De betyr ca det her:
 
-🏆Task: This is what you are supposed to do
+🏆Oppgave: Her er hva du skal gjøre
 
-💡Tip: Some extra info that might be good to know for solving the relevant exercise. 
+💡Tips: Litt ekstra info som kan være greit å være for å løse en oppgave
 
 <details>
-  <summary>🚨Solution: Click me! 😊</summary>
+  <summary>🚨Løsningsforslag: Klikk meg! 😊</summary>
 
-Here is a full proposal of how you *may* solve the exercise.
+Her finner du en komplett gjennomgang av hvordan du _kan_ løse oppgaven.
 
 </details>
 
-# Setup [TODO: Endre branch-navn]
-1. Clone the repository: 
+# Oppsett (Bendik oversetter)
+1. Klon repoet: 
 `git clone git@github.com:bekk/react-animation-workshop.git`
 
-2. Check out the branch `master_workshop_edition`
+2. Sjekk ut branchen `master_workshop_edition`
 
-3. Navigate to the repository folder and run `npm install` followed by `npm run start` and the app will run on `localhost:1234` in your browser.
+3. Naviger til repo-mappen og kjør `npm install` etterfulgt av `npm run start` og appen vil kjøre på `localhost:1234` i nettleseren.
 
-# Exercises
-We've made a simple card game that will be the starting point for everything you'll do in this workshop. The cardgame is called **war** ("Krig" in Norwegian). Just ask any of us if you don't know or remember the rules, but it doesn't really matter, because we've implemented all the game mechanics for you. What you should focus on is the possible **animations** that may suit such a game.
+# Oppgaver (Bendik oversetter)
+Som du kanskje nå ser har vi laget et enkelt kortspill som vil være utgangspunktet for alt du skal gjøre i denne workshopen, nemlig **krig**! Hvis du ikke husker reglene kan du spørre en av de som holder workshopen, men det spiller ikke så stor rolle, fordi vi har implementert all spillmekanikken for deg. Det du skal fokusere på er all **animasjonen** som man kan tenke seg hører til et slikt spill.
 
-💡There is a lot of game logic implemented here and there in the app, and although we have tried to hide as much as we possible, you'll still have to deal with files and components that contain some logic. However, we will try to guide you to the right places in the app where the tasks is supposed to be solved.
+💡Det er mye spillogikk implementert her og der i appen, og selv om vi har prøvd å skjule så mye vi kan vil du fortsatt måtte forholde deg til filer og komponenter som inneholder en del logikk. Vi skal derimot prøve å guide dere til de riktige stedene i appen der oppgavene skal løses.
 
-💡Sometimes it may be difficult to know where to begin in order to solve an exercise - a quick look at the solution proposal may be wise (and allowed) in this case.
+💡Noen ganger kan det kanskje være vanskelig å vite hvor man skal begynne for å løse en oppgave - en rask titt på løsningsforslaget kan isåfall være lurt.
 
-💡You are allowed to continue to play with the API, even after you've done exactly what the exercise asks you to do. In fact, we encourage it! You'll probably learn a lot just trying out different things on your own.
+💡Det er lov å leke seg med api'et, selv om du har løst akkurat det oppgaven ber deg om! Faktisk oppfordrer vi til det, da mange sannsynligvis vil kunne bli ferdig på godt under 2 timer hvis man bare gønner gjennom 😇
 
-## Exercise 1: Drag 💃
-After doing this exercise you should be able to pull a card from one of the card stacks to the area that says *Drag the card here*.
+## Oppgave 1: Drag (Bendik oversetter)
+I denne oppgaven skal du klare å dra et kort fra en bunke til området der det står *Dra kortet hit*.
 
-Let's break it down:
+La oss bryte ned oppgaven:
+#### Oppgave 1a)
+🏆Vi begynner med det første steget: gjør det mulig å klikke på et kort og dra det rundt, uten noen regler om hvor det skal lande.
 
-#### Exercise 1a)
-🏆We start with the first step: Make it possible to click on a card and drag it around (without any rules of where it should land).
-
-💡Navigate to `components/Card/Card.jsx` and change the component such that it returns a `<motion.div />` instead of a regular `<div>`
+💡Gå til `components/Card/Card.jsx` og endre komponenten til å returnere en `<motion.div />` istedenfor en vanlig div.
 
 <details>
-  <summary>🚨Solution</summary>
+  <summary>🚨Løsningsforslag</summary>
 
 ```js
   <motion.div
@@ -68,11 +67,11 @@ Let's break it down:
 
 #### Oppgave 1b)
 
-🏆Add some constraints such that the card doesn't just float away. Don't think avbout getting it to the right position yes, this comes later.
+🏆Legg på constraints slik at kortet ikke flyter avgårde. Ikke tenk på at det skal komme til riktig posisjon enda, dette kommer senere.
 
-💡`<motion.div>` has the relevant props: `dragConstraints`, `dragElastic` and `onDragEnd`.
+💡`<motion.div>` har følgende relevante props: `dragConstraints`, `dragElastic` og `onDragEnd`.
 
-As mentioned, we've made the game logic so that you may focus on making the animations. Therefore, just add the following:
+Vi har som sagt laget logikken, så dere skal få lov til å kose dere med animasjonen, så sett sistnevnte til:
 
 ```js
 onDragEnd={(event) => {
@@ -82,11 +81,11 @@ onDragEnd={(event) => {
 }}
 ```
 
-This will change the state of the game and flip the card when it is dragged and dropped within the shaded area.
+Denne sjekker om kortet befinner seg innenfor det skraverte området når det slippes, og vil endre staten til spillet samt flippe kortet når dette skjer.
 
 <details>
-  <summary>🚨Solution</summary>
-  The trick to make this work is to set the constraints to 0 in all directions. Framer's `drag` has an elasticity that can be controlled with the `dragElastic` props, which allows the card to be pulled to the correct position even if it is not allowed to "land" anywhere other than where it started.
+  <summary>🚨Løsningsforslag</summary>
+  Trikset for å få det her til å fungere i spillet er å sette constraints'ene til 0 i alle retninger. Framer sin `drag` har en elastisitet man kan styre med `dragElastic`-prop'en, som gjør at man kan få dratt kortet til riktig plassering selv om det ikke får lov til å "lande" noe annet sted enn der det startet.
 
 ```js
   <motion.div
@@ -110,16 +109,16 @@ This will change the state of the game and flip the card when it is dragged and 
 </details>
 <br/>
 
-#### Exercise 1c)
+#### Oppgave 1c)
 
-🏆Dragging should only be allowed if the card is flipped down. Make it so.
+🏆Drag skal kun være mulig hvis kortet er vendt ned. Fiks dette
 
-💡You can implement conditional drag like this: `drag={true}`
+💡Man kan ha betinget drag slik: `drag={true}`
 
-💡The `Card`-component has a `state: CardState`
+💡`Card`-komponenten har en `state: CardState`
 
 <details>
-  <summary>🚨Solution</summary>
+  <summary>🚨Løsningsforslag</summary>
 
 ```js
   <motion.div
@@ -178,16 +177,16 @@ Every game needs a menu screen, and since this workshop is all about animations 
 
 As you can see the menu is quite static at the moment, but we'll fix this in a moment.
 
-#### Oppgave 3a) (Stephen oversetter)
+#### Exercise 3a) (Stephen oversetter)
 
-🏆Gå i `Menu.jsx` og legg på enkel hover- og klikk-effekt på menyknappen (åpne og lukke menyen kommer i en senere oppgave!)
+🏆Add a simple animation when the user clicks or hovers over the menu button. You should look in `Menu.jsx` for this exercise. 
 
-💡Les om hvilke props motion-api'et støtter her: https://www.framer.com/api/motion/component/ og https://www.framer.com/api/motion/examples/
+💡You'll find a list of available props to pass to the motion component here: https://www.framer.com/api/motion/component/. Take a closer look at `whileHover` and `whileTap`
 
 <details>
   <summary>🚨Løsningsforslag</summary>
   
-  Enkelt og greit: Gjør om `button`-elementene til `motion.button` og send inn `whileHover`-og `whileTap`-props. 
+  Easy enough: Convert the  `button` elements to `motion.button` and pass the `whileHover` and `whileTap` props. 
   
 ```js
   const MenuButton = ({
