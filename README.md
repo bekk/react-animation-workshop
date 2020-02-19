@@ -132,6 +132,7 @@ Denne sjekker om kortet befinner seg innenfor det skraverte området når det sl
 </details>
 <br/>
 
+
 ## Exercise 2: Animate
 Let's continue animating!
 The `animate` prop takes an object with values that tell the motion component how to animate itself. Whenever any of these values change, the motion component will smoothly animate itself accordingly. [Check out the official docs](https://www.framer.com/api/motion/animation/) for a complete overview of what `animate` can do. Examples of fields you can specify in the `animate` object are `rotation` and `scale`. For now you should probably focus on two fields you can use to position the component: `x` and `y`.
