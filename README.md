@@ -410,22 +410,22 @@ Siste oppgave blir å legge på animasjon på en feature som viser poengsummene 
 * Legge på rotasjon
 * Skalere tallene iht. størrelsesforholdet på poengsummene
 
-## Ferdig før tiden? (Stephen oversetter)
+## Finished early?
 
-Da har vi et par forslag til hva du kan gjøre nå:
+Then we have a couple of suggestions for what you can do now:
 
-🏆Gjør det mulig å kunne rearrangere elementene i menyen med drag and drop
+🏆Make it possitlbe to rearrange the elements in the menu with drag and drop
 
-💡Det finnes et [eksempel i Framer-dokumentasjonen](https://codesandbox.io/s/framer-motion-drag-to-reorder-pkm1k) hvor akkurat dette gjøres
-
-<br/>
-
-🏆Gjør om menyelementene til "Accordions" med noe random innhold
-
-💡[Accordion-eksempel i Framer docs'ene](https://codesandbox.io/s/framer-motion-accordion-qx958)
+💡Take a look at an [example in the Framer documentation](https://codesandbox.io/s/framer-motion-drag-to-reorder-pkm1k) that does the same
 
 <br/>
 
-🏆Vis en modal når man klikker på "Regler" i menyen som inneholder en lang og scrollbar tekst
+🏆Convert the elements in the menu to "Accordions" with some random content
 
-💡[Scroll-eksempel i Framer docs'ene](https://codesandbox.io/s/framer-motion-viewport-scroll-and-svg-path-animation-mwi35?fontsize=14&module=%2Fsrc%2FExample.tsx)
+💡[Accordion example in the docs](https://codesandbox.io/s/framer-motion-accordion-qx958)
+
+<br/>
+
+🏆Display a modal when clicking on "Rules" in the menu that contains a long and scrollable text
+
+💡[Scroll example in the docs](https://codesandbox.io/s/framer-motion-viewport-scroll-and-svg-path-animation-mwi35?fontsize=14&module=%2Fsrc%2FExample.tsx)
