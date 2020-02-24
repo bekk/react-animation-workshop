@@ -140,7 +140,7 @@ This will change the state of the game and flip the card when it is dragged and 
 Let's continue animating!
 The `animate` prop takes an object with values that tell the motion component how to animate itself. Whenever any of these values change, the motion component will smoothly animate itself accordingly. [Check out the official docs](https://www.framer.com/api/motion/animation/) for a complete overview of what `animate` can do. Examples of fields you can specify in the `animate` object are `rotation` and `scale`. For now you should probably focus on two fields you can use to position the component: `x` and `y`.
 
-🏆Make the cards move to the right position when they're dragged to the shaded area.
+🏆Make the cards move to the right position when they're dragged to the "drag card here"-area.
 
 💡The `Card` component has a state variable, `position`, that updates for certain events in the course of the game. Use this to update the motion component.
 
