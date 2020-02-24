@@ -370,6 +370,8 @@ Dette kan vi bruke på liste-elementene i menyen vår!
   <summary>🚨Løsningsforslag</summary>
   
   Vi må definere et `variants`-objekt til `motion.ul`-elementet hvor vi setter `staggerChildren`. Det kan være fint å sette på en `delayChildren` når vi åpner menyen også, slik at menyelementene ikke skal komme før kortet vises helt. `delayChildren` vil utsette animasjonen til samtlige barn-elementer.
+
+TODO (fra Bendik): Kan også sette `staggerChildren` rett på `variants_menuArea`, da fungerer det og man slipper å måtte legge til `variants` på `motion.ul`-elementet (siden det propageres nedvover til barnekomponenter). Vurdere å endre lf'et.
   
   ```js
   const variants_navList = {
