@@ -1,8 +1,10 @@
 # react-animation-workshop
-Animation workshop for Booster Conference 2020!
+A workshop about making animations in React apps. 
+
+For Booster Conference 2020.
 
 # Introduction
-Welcome to this animation workshop! In this workshop you'll get yo play with a relatively new framework for making animations in React: **Framer Motion!** V1 of Framer Motion was released in June last year and is the successor to *Pose*, for those who are familiar with that. Read [this article](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67) for a brief intro to Framer Motion.
+Welcome! In this workshop you'll get to play with a relatively new framework for making animations in React: **Framer Motion!** V1 of Framer Motion was released in June last year and is the successor to *Pose*, for those who are familiar with that. Read [this article](https://medium.com/better-programming/smooth-animations-with-react-and-framer-motion-c272b6f22f67) for a brief intro to Framer Motion.
 
 The official documentation for the Framer Motion API [can be found here](https://www.framer.com/api/motion/?source=post_page-----c272b6f22f67----------------------), where you'll find simple examples of the most basic functions and possibilities that the API provides, among other things.
 
@@ -66,7 +68,7 @@ Let's break it down:
 </details>
 <br/>
 
-#### Oppgave 1b)
+#### Exercise 1b)
 
 🏆Add some constraints such that the card doesn't just float away. Don't think avbout getting it to the right position yes, this comes later.
 
@@ -186,7 +188,7 @@ As you can see the menu is quite static at the moment, but we'll fix this in a m
 💡You'll find a list of available props to pass to the motion component here: https://www.framer.com/api/motion/component/. Take a closer look at `whileHover` and `whileTap`
 
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   
   Easy enough: Convert the  `button` elements to `motion.button` and pass the `whileHover` and `whileTap` props. 
   
