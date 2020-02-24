@@ -391,9 +391,9 @@ Dette kan vi bruke på liste-elementene i menyen vår!
 </details>
 <br/>
 
-## Oppgave 4: Animere poengsummer (Stephen oversetter)
+## Exercise 4: Animate the scores
 
-Siste oppgave blir å legge på animasjon på en feature som viser poengsummene til spillerne. Her er det mange muligheter, så dette blir en åpen oppgave, men aller først: Rendre `<Score>`-komponenten i `App`, for eksempel rett etter menyen:
+The last exercise will be to add some animation to a feature that displays the scores of the players. This will be an open exercise since it can be done in multiple ways, but first: Render the `<Score`> component in `<App>` (right after the menu, for instance).
 
 ```js
 <div className="MenuContainer">
@@ -404,11 +404,11 @@ Siste oppgave blir å legge på animasjon på en feature som viser poengsummene 
 </div>
 ```
 
-🏆Bruk det du har lært til nå (eller bruk og lær noe helt nytt!) til å legge på animasjon på tallene hver gang poengsummen oppdateres.
+🏆Use what you've learned so far (or learn and make use of something completely new!) and add an animation to the scores every time they are updated.
 
-💡Et par relativt simple muligheter:
-* Legge på rotasjon
-* Skalere tallene iht. størrelsesforholdet på poengsummene
+💡A couple of relatively simple suggestions:
+* Add rotation
+* Scale the numbers according to the difference of the score values
 
 ## Finished early?
 
