@@ -255,9 +255,7 @@ As you can see the menu is quite static at the moment, but we'll fix this in a m
   }
   ```
 
-Det er `MenuArea` vi vil at skal vises/skjules, og dette kan vi da gjøre hvis vi endrer den til å rendre en `motion.div` som tar inn en `variants`-prop med et objekt, `variants_menuArea` hvor vi har definert ulik animasjon for de to visuelle statene, `"open"`og `"closed"`. From the docs: [vurdere å ta med dette]
-
->If a motion component has children, changes in variant will flow down through the component hierarchy. These changes in variant will flow down until a child component defines its own animate property.
+Det er `MenuArea` vi vil at skal vises/skjules, og dette kan vi da gjøre hvis vi endrer den til å rendre en `motion.div` som tar inn en `variants`-prop med et objekt, `variants_menuArea` hvor vi har definert ulik animasjon for de to visuelle statene, `"open"`og `"closed"`.
 
   ```js
   const MenuArea = () => {
