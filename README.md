@@ -1,5 +1,5 @@
 # react-animation-workshop
-A workshop about making animations in React apps. 
+A workshop that will get you started with making animations in React applications.
 
 For Booster Conference 2020.
 
@@ -395,7 +395,7 @@ TODO (fra Bendik): Kan også sette `staggerChildren` rett på `variants_menuArea
 
 ## Exercise 4: Animate the scores
 
-The last exercise will be to add some animation to a feature that displays the scores of the players. This will be an open exercise since it can be done in multiple ways, but first: Render the `<Score`> component in `<App>` (right after the menu, for instance).
+In the last exercise you'll need to add some animation to a feature that displays the scores of the players. This will be an open exercise since it can be done in multiple ways, but first: Render the `<Score`> component in `<App>` (right after the menu, for instance).
 
 ```js
 <div className="MenuContainer">
@@ -416,7 +416,7 @@ The last exercise will be to add some animation to a feature that displays the s
 
 Then we have a couple of suggestions for what you can do now:
 
-🏆Make it possitlbe to rearrange the elements in the menu with drag and drop
+🏆Make it possible to rearrange the elements in the menu with drag and drop
 
 💡Take a look at an [example in the Framer documentation](https://codesandbox.io/s/framer-motion-drag-to-reorder-pkm1k) that does the same
 
