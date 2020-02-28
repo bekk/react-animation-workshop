@@ -181,7 +181,7 @@ Every game needs a menu screen, and since this workshop is all about animations 
 
 As you can see the menu is quite static at the moment, but we'll fix this in a moment.
 
-#### Exercise 3a) (Stephen oversetter)
+#### Exercise 3a)
 
 🏆Add a simple animation when the user clicks or hovers over the menu button. You should look in `Menu.jsx` for this exercise. 
 
@@ -214,12 +214,12 @@ As you can see the menu is quite static at the moment, but we'll fix this in a m
 </details>
 <br/>
 
-#### Oppgave 3b) (Stephen oversetter)
+#### Oppgave 3b)
 
-🏆Gjør noe tilsvarende med hvert menyelement
+🏆Repeat exercise 3a) but for each menu element as well
 
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   
 ```js
   <motion.li whileHover={{ scale: 1.5, translateX: 50 }} key={x.id}>
@@ -230,17 +230,18 @@ As you can see the menu is quite static at the moment, but we'll fix this in a m
 </details>
 <br/>
 
-#### Oppgave 3c) (Stephen oversetter)
+#### Oppgave 3c)
 
-🏆Bruk "visuell state" med `variants` til å vise/skjule menyen når det klikkes på meny-ikonet.
+🏆Define visual state with the `variants` prop to show/hide the menu when the menu icon is clicked.
 
-💡Les om `variants` her: https://www.framer.com/api/motion/animation/#variants. "Visuell state" kan settes i `animate`-propen til et element, og hvis elementet (eller barn-elementer) tar inn en `variants`-prop'en med et objekt som definerer ulike "views" for hver av statene vil det kunne animeres forskjellig basert på den visuelle staten.
-💡Se i `Menu` og `MenuArea` komponenten
+💡Variants define visual state for an element and its descendants, and is a powerful tool for orchestrating animations in a declarative way. You can read more about `variants` [here](https://www.framer.com/api/motion/animation/#variants).
+💡Take a look at the `Menu` and `MenuArea` components.
 
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   
-  Først må vi endre `nav`-elementet til en `motion.nav` og sette "den visuelle staten" (*visual state* som doc'en kaller det) til `motion.nav`-elementet til enten `"open"` eller `"closed"` avhengig av om knappen er klikket eller ikke. Gjør vi det kan vi lage og sette `variants` i underelementene til `motion.nav`-elementet som inneholder disse to statene, som da kan rendres/animeres ulikt avhengig av den visuelle staten.
+  First we need to change the `nav` to a `motion.nav` and assign it a state/variant label of either `open` or `closed` depending on whether the menu button has been clicked or not. 
+  Any variants we assign to a child `motion` component that define animations for these two states will then animate itself based on which state is currently active.
   
   ```js
   export const Menu = () => {
@@ -255,7 +256,7 @@ As you can see the menu is quite static at the moment, but we'll fix this in a m
   }
   ```
 
-Det er `MenuArea` vi vil at skal vises/skjules, og dette kan vi da gjøre hvis vi endrer den til å rendre en `motion.div` som tar inn en `variants`-prop med et objekt, `variants_menuArea` hvor vi har definert ulik animasjon for de to visuelle statene, `"open"`og `"closed"`.
+`MenuArea` is the component we want to be able to show and hide, and we're able to do that if we make it render a `motion.div` instead of a regular div and at the same time assign it a `variants` prop which is an object defining animation for the states `open` and `closed`.
 
   ```js
   const MenuArea = () => {
@@ -278,12 +279,12 @@ Det er `MenuArea` vi vil at skal vises/skjules, og dette kan vi da gjøre hvis v
   }
   ```
 
-Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentlig bare å leke seg!
+In our solution we make the menu fly in from the side, but there's nothing stopping you from experimenting with different styles of transition.
 
   <details>
-    <summary>💡Vis/skjul menyen like a pro</summary>
+    <summary>💡Show/hide the menu</summary>
 
-    En kul effekt er å bruke `clipPath` som en variant for å skjule/vise menyen. Endre `variants_menuArea` til følgende:
+    We can use the css-property `clip-path` to get a cool effect for our state transitions. Try this out:
 
   ```js
   const variants_menuArea = {
@@ -309,20 +310,23 @@ Her har vi satt menyen til å fly inn og ut langs x-aksen, men her er det egentl
 </details>
 <br/>
 
-#### Oppgave 3d) (Stephen oversetter)
+#### Oppgave 3d)
 
-Nå skal vi legge på animasjoner på selve innholdet i menyen.
+We'll animate the menu contents next.
 
-🏆Få listen i menyen til å fly inn og ut fra toppen når menyen åpnes/lukkes.
+🏆Make the list containing the menu items fly in from the top whenever the menu opens/closes.
 
 💡Husk at barn av elementer som har en visuell state også kan bruke `variants` til å rendres/animeres avhengig av staten.
 💡Sett på en liten delay på kortet når det lukkes slik at innholdet rekker å animeres ferdig før menyen forsvinner.
 💡Se `MenuNavigation`
 
+💡Variants is a good way to achieve this effect. Add a short delay when the card is closed so that the contents are able to finish their animations before the menu disappears.
+💡Look in `MenuNavigation`
+
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   
-  Definer en `variants_menuList` i `MenuNavigation`: 
+  Create a variants object, `variants_menuList`, in `MenuNavigation`: 
   
   ```js
   const variants_navItems = {
@@ -337,7 +341,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
   }
   ```
   
-  Og legg den til på `motion.li`-elementene:
+  Assign it to the list items:
 
   ```js
   <motion.li variants={variants_navItems} key={x.id}>
@@ -345,7 +349,7 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
   </motion.li>
   ```
   
-  For å få delay når kortet skjules, legg til følgende i `closed`-objektet til `variants_menuArea`:
+  To add a delay add the following to the `closed` variant:
   
   ```js
   transition: {
@@ -356,20 +360,20 @@ Nå skal vi legge på animasjoner på selve innholdet i menyen.
 </details>
 <br/>
 
-#### Oppgave 3e) (Stephen oversetter)
+#### Oppgave 3e)
 
-Vi kan la et forelder-element styre når animasjonene til barn-elementene blir satt i gang ved hjelp av `transition`-props som blant annet `staggerChildren`. For eksempel `staggerChildren: 1` vil utsette utførelsen av animasjonen til hvert barn-element med 1 sekund.
+Variants let us animate entire sub-trees by simply changing a few properties of a parent component. `staggerChildren` is a prop that allows us to stagger or delay the animations of every child component and make them execute in  sequence.
 
-Dette kan vi bruke på liste-elementene i menyen vår!
+This sounds like a great fit for our menu!
 
-🏆Bruk `staggerChildren` til å få hvert listeelement i menyen til å fly inn hver for seg.
+🏆Use `staggerChildren` to make each menu item fly in in sequence.
 
-💡`variants`-eksempelet i Framer-dokumentasjonen inneholder en meny som tilfeldigvis ligner litt på vår, hvor det brukes `staggerChildren`...
+💡The `variants` example in the Framer documentation has a menu that coincidentally looks a little bit like our, where they make use of `staggerChildren`...
 
 <details>
-  <summary>🚨Løsningsforslag</summary>
+  <summary>🚨Solution</summary>
   
-  Vi må definere et `variants`-objekt til `motion.ul`-elementet hvor vi setter `staggerChildren`. Det kan være fint å sette på en `delayChildren` når vi åpner menyen også, slik at menyelementene ikke skal komme før kortet vises helt. `delayChildren` vil utsette animasjonen til samtlige barn-elementer.
+Our `open` and `closed` variants each need `transition` objects that define `staggerChildren`. The `open` variant should also define a `delayChildren` transition so that the menu items don't fly in before the card has appeared fully.
 
 TODO (fra Bendik): Kan også sette `staggerChildren` rett på `variants_menuArea`, da fungerer det og man slipper å måtte legge til `variants` på `motion.ul`-elementet (siden det propageres nedvover til barnekomponenter). Vurdere å endre lf'et.
   
@@ -384,7 +388,7 @@ TODO (fra Bendik): Kan også sette `staggerChildren` rett på `variants_menuArea
   };
   ```
   
-  Og legg den til på `motion.ul`-elementet:
+  And add it to the `motion.ul` element:
 
   ```js
   <motion.ul className="MenuNavigation" variants={variants_navList}>
