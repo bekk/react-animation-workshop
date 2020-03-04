@@ -316,12 +316,8 @@ We'll animate the menu contents next.
 
 🏆Make the list containing the menu items fly in from the top whenever the menu opens/closes.
 
-💡Husk at barn av elementer som har en visuell state også kan bruke `variants` til å rendres/animeres avhengig av staten.
-💡Sett på en liten delay på kortet når det lukkes slik at innholdet rekker å animeres ferdig før menyen forsvinner.
-💡Se `MenuNavigation`
-
 💡Variants is a good way to achieve this effect. Add a short delay when the card is closed so that the contents are able to finish their animations before the menu disappears.
-💡Look in `MenuNavigation`
+💡Look into `MenuNavigation`
 
 <details>
   <summary>🚨Solution</summary>
@@ -360,7 +356,7 @@ We'll animate the menu contents next.
 </details>
 <br/>
 
-#### Oppgave 3e)
+#### Exercise 3e)
 
 Variants let us animate entire sub-trees by simply changing a few properties of a parent component. `staggerChildren` is a prop that allows us to stagger or delay the animations of every child component and make them execute in  sequence.
 
