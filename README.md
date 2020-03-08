@@ -70,7 +70,7 @@ Let's break it down:
 
 #### Exercise 1b)
 
-🏆Add some constraints such that the card doesn't just float away. Don't think avbout getting it to the right position yes, this comes later.
+🏆Add some constraints such that the card doesn't just float away. Don't think about getting it to the right position yet, we'll come back to that later.
 
 💡`<motion.div>` has the relevant props: `dragConstraints`, `dragElastic` and `onDragEnd`.
 
