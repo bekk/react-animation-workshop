@@ -22,7 +22,9 @@ export const getPositionForState = (cardState, cardIndex, player) => {
         ...position,
         y: position.y * direction + (cardIndex * 2)
     });
+
     switch (cardState) {
+        case CardState.SHUFFLED:
         case CardState.CLOSED: {
             return { ...startingPosition };
         }

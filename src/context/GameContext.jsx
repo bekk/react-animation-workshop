@@ -33,6 +33,22 @@ export const GameContextProvider = ({ children }) => {
                 dispatch({ type: Action.INITIATE_WAR });
                 break;
             }
+            case GameState.CHECK_FOR_SHUFFLE: {
+                dispatch({ type: Action.SHUFFLE_DECK })
+                break;
+            }
+            case GameState.GAME_OVER: {
+                dispatch({ type: Action.GAME_OVER })
+                break;
+            }
+            case GameState.RESET_DECK: {
+                dispatch({ type: Action.RESET_DECK })
+                break;
+            }
+            case GameState.IDLE: {
+                dispatch({ type: Action.IDLE })
+                break;
+            }
         }
     }, [state.gameState]);
 
