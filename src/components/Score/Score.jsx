@@ -1,6 +1,8 @@
 import React from 'react';
 import './Score.less';
 
+// Oppgave 4
+
 export const Score = (props) => {
     return (
         <React.Fragment>

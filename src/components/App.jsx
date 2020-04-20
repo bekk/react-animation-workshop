@@ -10,12 +10,6 @@ const App = () => {
 
     return (
         <div className="App">
-            <div className="MenuContainer">
-                <Menu />
-            </div>
-            <div className="ScoreContainer">
-                <Score playerScore={state.score.player} computerScore={state.score.computer}/>
-            </div>
             {
                 state.gameState === 'game_over' && (
                     <>
