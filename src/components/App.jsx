@@ -16,6 +16,14 @@ const App = () => {
             <div className="ScoreContainer">
                 <Score playerScore={state.score.player} computerScore={state.score.computer}/>
             </div>
+            {
+                state.gameState === 'game_over' && (
+                    <>
+                        <div className="GameOverBackDrop"/>
+                        <div className="GameOver">Game Over</div>
+                    </>
+                )
+            }
             <div className="Table">
                 <div className="Cell" />
                 <div className="Cell">
