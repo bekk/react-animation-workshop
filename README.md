@@ -27,13 +27,13 @@ Here is a full proposal of how you *may* solve the exercise.
 
 </details>
 
-# Setup [TODO: Endre branch-navn]
+# Setup
 1. Clone the repository: 
 `git clone git@github.com:bekk/react-animation-workshop.git`
 
-2. Check out the branch `master_workshop_edition`
+2. Navigate to the repository folder and run `npm install`
 
-3. Navigate to the repository folder and run `npm install` followed by `npm run start` and the app will run on `localhost:1234` in your browser.
+3. Run `npm run start` and the app will run on `localhost:1234` in your browser.
 
 # Exercises
 We've made a simple card game that will be the starting point for everything you'll do in this workshop. The cardgame is called **war** ("Krig" in Norwegian). Just ask any of us if you don't know or remember the rules, but it doesn't really matter, because we've implemented all the game mechanics for you. What you should focus on is the possible **animations** that may suit such a game.
