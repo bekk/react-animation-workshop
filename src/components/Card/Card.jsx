@@ -62,7 +62,6 @@ const Card = ({
     return (
         <div
             className={classNames('Card__wrapper', state, player)}
-            animate={{ rotate: rotation, ...position }}
             style={{ zIndex, originY: `-${Sizes.CARD_HEIGHT / 2}px` }}
             // TODO: Oppgave 1 og 2 her
         >
